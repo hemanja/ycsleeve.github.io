@@ -179,23 +179,98 @@
 
 @media (max-width: 768px) {
     .product-main {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
+        gap: 20px !important;
+        padding: 20px 0 !important;
     }
     
     .product-gallery {
-        position: static;
+        position: static !important;
+    }
+    
+    .main-image {
+        width: 100% !important;
+    }
+    
+    .main-image img {
+        width: 100% !important;
+        height: auto !important;
+        display: block !important;
+    }
+    
+    .thumb-images {
+        display: flex !important;
+        gap: 10px !important;
+        overflow-x: auto !important;
+        padding-bottom: 10px !important;
+    }
+    
+    .thumb {
+        width: 60px !important;
+        height: 60px !important;
+        min-width: 60px !important;
+        flex-shrink: 0 !important;
+    }
+    
+    .thumb img {
+        width: 100% !important;
+        height: 100% !important;
+        object-fit: cover !important;
+    }
+    
+    .product-content h1 {
+        font-size: 24px !important;
+        line-height: 1.3 !important;
+        word-wrap: break-word !important;
+    }
+    
+    .product-content h2 {
+        font-size: 16px !important;
+    }
+    
+    .product-tags {
+        gap: 8px !important;
+    }
+    
+    .tag {
+        font-size: 11px !important;
+        padding: 4px 12px !important;
+    }
+    
+    .product-specs {
+        width: 100% !important;
+        overflow-x: auto !important;
+        -webkit-overflow-scrolling: touch !important;
+    }
+    
+    .product-specs table {
+        min-width: 600px !important;
+        font-size: 13px !important;
+    }
+    
+    .product-specs th,
+    .product-specs td {
+        padding: 10px 12px !important;
     }
     
     .product-applications ul {
-        grid-template-columns: 1fr;
+        grid-template-columns: 1fr !important;
     }
     
     .product-cta {
-        flex-direction: column;
+        flex-direction: column !important;
+        gap: 10px !important;
     }
     
     .product-cta .btn {
-        width: 100%;
-        text-align: center;
+        width: 100% !important;
+        text-align: center !important;
+        padding: 12px 20px !important;
+    }
+    
+    .breadcrumb {
+        padding: 80px 0 15px !important;
+        font-size: 12px !important;
+        word-wrap: break-word !important;
     }
 }
