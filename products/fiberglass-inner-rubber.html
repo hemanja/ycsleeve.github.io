@@ -40,7 +40,13 @@
             
             <div class="product-main">
                 <div class="product-gallery">
-                    <div class="main-image"><img src="../images/fiberglass-inner-rubber-main.jpg" alt="内胶外纤双层管"></div>
+                    <div class="main-image"><img id="mainImage" src="../images/fiberglass-inner-rubber-main.jpg" alt="内胶外纤双层管"></div>
+                    <div class="thumbnail-list">
+                        <img src="../images/fiberglass-inner-rubber-main.jpg" alt="产品主图" class="thumbnail active" onclick="switchImage(this)">
+                        <img src="../images/fiberglass-inner-rubber-main-2.jpg" alt="产品图2" class="thumbnail" onclick="switchImage(this)">
+                        <img src="../images/fiberglass-inner-rubber-main-3.jpg" alt="产品图3" class="thumbnail" onclick="switchImage(this)">
+                        <img src="../images/fiberglass-inner-rubber-detail.jpg" alt="细节图" class="thumbnail" onclick="switchImage(this)">
+                    </div>
                 </div>
                 <div class="product-content">
                     <h1>内胶外纤双层管</h1>
@@ -107,5 +113,15 @@
     </footer>
 
     <a href="https://wa.me/8613590605550" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
+
+    <script>
+    function switchImage(thumb) {
+        var mainImage = document.getElementById('mainImage');
+        mainImage.src = thumb.src;
+        var thumbnails = document.querySelectorAll('.thumbnail');
+        thumbnails.forEach(function(t) { t.classList.remove('active'); });
+        thumb.classList.add('active');
+    }
+    </script>
 </body>
 </html>
