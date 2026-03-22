@@ -40,13 +40,7 @@
             
             <div class="product-main">
                 <div class="product-gallery">
-                    <div class="main-image"><img id="mainImage" src="../images/fiberglass-inner-rubber-main.jpg" alt="内胶外纤双层管"></div>
-                    <div class="thumbnail-list">
-                        <img src="../images/fiberglass-inner-rubber-main.jpg" alt="产品主图" class="thumbnail active" onclick="switchImage(this)">
-                        <img src="../images/fiberglass-inner-rubber-main-2.jpg" alt="产品图2" class="thumbnail" onclick="switchImage(this)">
-                        <img src="../images/fiberglass-inner-rubber-main-3.jpg" alt="产品图3" class="thumbnail" onclick="switchImage(this)">
-                        <img src="../images/fiberglass-inner-rubber-detail.jpg" alt="细节图" class="thumbnail" onclick="switchImage(this)">
-                    </div>
+                    <div class="main-image"><img src="../images/fiberglass-inner-rubber-main.jpg" alt="内胶外纤双层管"></div>
                 </div>
                 <div class="product-content">
                     <h1>内胶外纤双层管</h1>
@@ -84,7 +78,26 @@
                     </div>
                 </div>
             </div>
-            
+
+            <!-- 产品细节展示 -->
+            <div style="margin-top: 60px;">
+                <h3 style="color: #ff6b2c; margin-bottom: 30px; text-align: center;"><i class="fas fa-search-plus"></i> 产品细节展示</h3>
+                <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px;">
+                    <div style="text-align: center;">
+                        <img src="../images/fiberglass-inner-rubber-main-2.jpg" alt="多规格展示" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <p style="margin-top: 10px; color: #999; font-size: 14px;">多规格产品展示</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../images/fiberglass-inner-rubber-main-3.jpg" alt="盘装产品" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <p style="margin-top: 10px; color: #999; font-size: 14px;">盘装产品（带保护膜）</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <img src="../images/fiberglass-inner-rubber-detail.jpg" alt="斜切端细节" style="width: 100%; border-radius: 10px; box-shadow: 0 5px 15px rgba(0,0,0,0.3);">
+                        <p style="margin-top: 10px; color: #999; font-size: 14px;">斜切端展示中空结构</p>
+                    </div>
+                </div>
+            </div>
+
             <div style="margin-top: 60px; padding: 30px; background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%); border-radius: 15px;">
                 <h3 style="color: #ff6b2c; margin-bottom: 20px;"><i class="fas fa-star"></i> 内胶外纤产品特点</h3>
                 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px;">
@@ -113,15 +126,5 @@
     </footer>
 
     <a href="https://wa.me/8613590605550" class="whatsapp-float" target="_blank"><i class="fab fa-whatsapp"></i></a>
-
-    <script>
-    function switchImage(thumb) {
-        var mainImage = document.getElementById('mainImage');
-        mainImage.src = thumb.src;
-        var thumbnails = document.querySelectorAll('.thumbnail');
-        thumbnails.forEach(function(t) { t.classList.remove('active'); });
-        thumb.classList.add('active');
-    }
-    </script>
 </body>
 </html>
