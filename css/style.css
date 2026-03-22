@@ -577,6 +577,12 @@ body {
     position: relative;
 }
 
+.about-image img {
+    max-height: 600px;
+    object-fit: cover;
+    object-position: top;
+}
+
 .about-image::before {
     content: '';
     position: absolute;
@@ -1280,6 +1286,14 @@ body {
     
     .about-image {
         order: -1;
+    }
+
+    .about-image img {
+        max-height: 500px;
+    }
+
+    .about-text {
+        width: 100%;
     }
     
     .about-stats {
