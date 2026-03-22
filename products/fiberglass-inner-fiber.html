@@ -54,7 +54,20 @@
             <div id="model4" class="model-content active">
                 <div class="product-main">
                     <div class="product-gallery">
-                        <div class="main-image"><img src="../images/fiberglass-sleeve.jpg" alt="内纤外胶 4KV"></div>
+                        <div class="main-image">
+                            <img src="../images/inner-fiber-4kv-1.png" alt="内纤外胶 4KV" id="mainImage4">
+                        </div>
+                        <div class="thumb-images">
+                            <div class="thumb active" onclick="changeImage4('../images/inner-fiber-4kv-1.png', this)">
+                                <img src="../images/inner-fiber-4kv-1.png" alt="产品图1">
+                            </div>
+                            <div class="thumb" onclick="changeImage4('../images/inner-fiber-4kv-2.png', this)">
+                                <img src="../images/inner-fiber-4kv-2.png" alt="产品图2">
+                            </div>
+                            <div class="thumb" onclick="changeImage4('../images/inner-fiber-4kv-3.png', this)">
+                                <img src="../images/inner-fiber-4kv-3.png" alt="产品图3">
+                            </div>
+                        </div>
                     </div>
                     <div class="product-content">
                         <h1>内纤外胶玻纤管 - 4KV型</h1>
@@ -65,7 +78,7 @@
                             <span class="tag">防水防潮</span>
                         </div>
                         <div class="product-description">
-                            <p>内纤外胶玻纤管采用内层玻璃纤维编织、外层硅橡胶涂层工艺，具有优异的耐磨性、耐高压性和防水防潮性能。外层硅橡胶提供良好的机械保护。</p>
+                            <p>内纤外胶玻纤管采用内层玻璃纤维编织、外层硅橡胶涂层工艺，具有优异的耐磨性、耐高压性和防水防潮性能。硅胶涂层厚而光滑，提供可靠的绝缘保护和机械强度。</p>
                         </div>
                         <div class="product-specs">
                             <h3><i class="fas fa-thermometer-half"></i> 技术参数</h3>
@@ -79,6 +92,34 @@
                         <div class="product-cta">
                             <a href="https://wa.me/8613590605550" class="btn btn-whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp咨询</a>
                             <a href="mailto:heman508@gmail.com" class="btn btn-primary"><i class="fas fa-envelope"></i> 邮件询价</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <!-- 产品细节展示 -->
+                <div class="product-details" style="margin-top: 40px;">
+                    <h3 style="text-align: center; margin-bottom: 30px; color: #ff6b2c;">产品细节 Product Details</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                        <div style="text-align: center;">
+                            <img src="../images/inner-fiber-4kv-detail-1.png" alt="硅胶涂层厚实" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                            <p style="margin-top: 15px; color: #ff8c5a; font-size: 16px; font-weight: bold;">
+                                <i class="fas fa-check-circle"></i> 硅胶涂层厚实
+                            </p>
+                            <p style="color: #999; font-size: 14px;">加厚硅胶涂层，绝缘更可靠</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../images/inner-fiber-4kv-detail-2.png" alt="表面光滑平顺" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                            <p style="margin-top: 15px; color: #ff8c5a; font-size: 16px; font-weight: bold;">
+                                <i class="fas fa-check-circle"></i> 表面光滑平顺
+                            </p>
+                            <p style="color: #999; font-size: 14px;">涂层均匀，表面光洁平整</p>
+                        </div>
+                        <div style="text-align: center;">
+                            <img src="../images/inner-fiber-4kv-detail-3.png" alt="安全耐高压" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
+                            <p style="margin-top: 15px; color: #ff8c5a; font-size: 16px; font-weight: bold;">
+                                <i class="fas fa-check-circle"></i> 安全耐高压
+                            </p>
+                            <p style="color: #999; font-size: 14px;">4KV耐压等级，安全可靠</p>
                         </div>
                     </div>
                 </div>
@@ -185,6 +226,12 @@
         event.target.classList.add('active');
         document.querySelectorAll('.model-content').forEach(content => content.classList.remove('active'));
         document.getElementById(model).classList.add('active');
+    }
+    
+    function changeImage4(src, thumb) {
+        document.getElementById('mainImage4').src = src;
+        document.querySelectorAll('#model4 .thumb').forEach(t => t.classList.remove('active'));
+        thumb.classList.add('active');
     }
     </script>
 </body>
