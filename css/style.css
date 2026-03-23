@@ -601,6 +601,21 @@ body {
     text-align: center;
 }
 
+.about-banner {
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+}
+
+.about-banner img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 .about-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
