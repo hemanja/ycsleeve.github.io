@@ -1,8 +1,6 @@
 backend:
-  name: github
-  repo: hemanja/ycsleeve.github.io
+  name: git-gateway
   branch: master
-  base_url: https://yc-cms-oauth.vercel.app
 
 # 本地开发模式
 local_backend: false
@@ -57,11 +55,10 @@ collections:
     extension: "html"
     format: "frontmatter"
     fields:
-      - { label: "产品名称", name: "title", widget: "string", required: true }
-      - { label: "英文名称", name: "title_en", widget: "string", required: true }
+      - { label: "产品名称", name: "title", widget: "string" }
+      - { label: "英文名称", name: "title_en", widget: "string" }
       - { label: "产品类型", name: "category", widget: "select", options: ["单壁热缩管", "双壁热缩管", "带胶热缩管", "中壁热缩管", "母排热缩管", "其他"] }
-      - { label: "主图", name: "main_image", widget: "image", required: true }
-      - { label: "产品图片", name: "images", widget: "list", field: { label: "图片", name: "image", widget: "image" } }
+      - { label: "主图", name: "main_image", widget: "image" }
       - { label: "简短描述", name: "description", widget: "text" }
       - label: "技术参数"
         name: "specs"
@@ -81,8 +78,8 @@ collections:
     extension: "html"
     format: "frontmatter"
     fields:
-      - { label: "产品名称", name: "title", widget: "string", required: true }
-      - { label: "英文名称", name: "title_en", widget: "string", required: true }
+      - { label: "产品名称", name: "title", widget: "string" }
+      - { label: "英文名称", name: "title_en", widget: "string" }
       - { label: "产品类型", name: "category", widget: "select", options: ["波纹管", "硅胶管", "PVC管", "其他"] }
       - { label: "主图", name: "main_image", widget: "image" }
       - { label: "简短描述", name: "description", widget: "text" }

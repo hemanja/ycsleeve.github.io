@@ -1,7 +1,0 @@
-{
-  "version": 2,
-  "routes": [
-    { "src": "/auth", "dest": "/api/auth" },
-    { "src": "/callback", "dest": "/api/auth" }
-  ]
-}

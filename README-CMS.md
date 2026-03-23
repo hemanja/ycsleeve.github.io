@@ -1,64 +1,78 @@
 # YC INSULATION CMS 后台管理系统
 
+## 🎯 CMS方案
+
+使用 **Netlify CMS (Decap CMS)** + **Netlify Identity**
+
+**优势**：
+- ✅ 免费托管
+- ✅ 自带身份认证（无需OAuth配置）
+- ✅ 自动部署
+- ✅ 支持自定义域名
+- ✅ 可视化产品管理
+
+---
+
 ## 🚀 快速开始
 
-### 1. 访问后台
+### 步骤1：注册Netlify账号
 
-网站部署后，访问：`https://hemanja.github.io/ycsleeve.github.io/admin/`
+1. 访问 https://app.netlify.com/signup
+2. 使用GitHub账号注册
 
-### 2. 登录方式
+### 步骤2：导入网站
 
-使用GitHub账号登录（需要OAuth配置）
+1. 在Netlify点击 "Add new site" → "Import an existing project"
+2. 选择 "GitHub"
+3. 授权并选择仓库 `hemanja/ycsleeve.github.io`
+4. 构建设置：
+   - Build command: 留空（静态网站无需构建）
+   - Publish directory: `.`
+5. 点击 "Deploy site"
+
+### 步骤3：启用Identity服务
+
+1. 进入网站设置：Site settings → Identity
+2. 点击 "Enable Identity"
+3. 配置注册方式：
+   - Registration: "Invite only"（仅邀请注册）
+   - External providers: GitHub（可选）
+
+### 步骤4：启用Git Gateway
+
+1. 在 Identity 设置中
+2. 找到 Services → Git Gateway
+3. 点击 "Enable Git Gateway"
+
+### 步骤5：添加管理员
+
+1. 回到 Identity 页面
+2. 点击 "Invite users"
+3. 输入你的邮箱地址
+4. 收到邮件后点击链接设置密码
+
+### 步骤6：访问CMS后台
+
+访问：`https://你的站点名.netlify.app/admin/`
+
+使用邮箱和密码登录即可！
 
 ---
 
-## 📋 OAuth配置步骤
-
-### 步骤1：创建GitHub OAuth App
-
-1. 访问 https://github.com/settings/developers
-2. 点击 "OAuth Apps" → "New OAuth App"
-3. 填写信息：
-   - **Application name**: YC INSULATION CMS
-   - **Homepage URL**: https://hemanja.github.io/ycsleeve.github.io/
-   - **Authorization callback URL**: https://yc-cms-oauth.vercel.app/callback
-4. 创建后记录 **Client ID** 和 **Client Secret**
-
-### 步骤2：部署OAuth代理到Vercel
-
-**方式A：一键部署**
-
-点击按钮部署到Vercel：
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/nickyout/oauth-github)
-
-**方式B：手动部署**
-
-1. Fork仓库：https://github.com/nickyout/oauth-github
-2. 在Vercel导入该仓库
-3. 设置环境变量：
-   - `OAUTH_CLIENT_ID`: 你的GitHub Client ID
-   - `OAUTH_CLIENT_SECRET`: 你的GitHub Client Secret
-   - `REDIRECT_URL`: https://hemanja.github.io/ycsleeve.github.io/admin/
-
-### 步骤3：更新配置
-
-在 `admin/config.yml` 中更新 `base_url` 为你的Vercel域名。
-
----
-
-## 📦 产品管理
+## 📋 产品管理
 
 ### 添加新产品
 
 1. 登录后台
-2. 选择产品系列（玻璃纤维套管/热缩管/其他）
+2. 选择产品系列：
+   - 玻璃纤维套管
+   - 热缩管系列
+   - 其他产品
 3. 点击"新建产品"
 4. 填写产品信息：
-   - 产品名称
-   - 英文名称
+   - 产品名称（中英文）
    - 产品类型
-   - 主图和产品图片
+   - 主图 + 产品图片
    - 技术参数
    - 应用领域
 5. 点击"发布"
@@ -67,13 +81,14 @@
 
 1. 在产品列表中找到要编辑的产品
 2. 点击进入编辑界面
-3. 修改内容后点击"保存"
+3. 修改内容
+4. 点击"保存"或"发布"
 
 ### 上传图片
 
-1. 在编辑界面点击"选择图片"
-2. 选择本地图片文件
-3. 图片会自动上传到 `images/products/` 目录
+1. 在编辑界面点击图片区域
+2. 选择"上传"或拖拽图片
+3. 图片自动保存到 `images/products/`
 
 ---
 
@@ -91,67 +106,59 @@ products/
 ├── high-temp-seal-tube.html         # 耐高温密封管
 ├── fiberglass-ecigarette.html       # 电子烟专用管
 ├── heatshrink/                      # 热缩管系列
-│   ├── single-wall.html
-│   └── dual-wall.html
 └── others/                          # 其他产品
-    ├── corrugated-tube.html
-    └── silicone-tube.html
 ```
 
 ### 图片存储
 
 ```
 images/
-├── products/                        # CMS上传的产品图片
-├── scenes/                          # 应用场景图
-└── *.jpg/png                        # 其他图片
+├── products/         # CMS上传的产品图片
+├── scenes/           # 应用场景图
+└── *.jpg/png         # 其他图片
 ```
 
 ---
 
-## 🔧 本地开发
+## 🔧 自定义域名（可选）
 
-### 运行本地CMS
-
-```bash
-# 安装依赖
-npm install -g decap-server
-
-# 运行本地服务器
-npx decap-server
-
-# 访问 http://localhost:3000/admin/
-```
+1. 在Netlify进入 Domain settings
+2. 点击 "Add custom domain"
+3. 输入你的域名（如 ycinsulation.com）
+4. 按照提示配置DNS
 
 ---
 
 ## 📚 相关文档
 
 - [Decap CMS 文档](https://decapcms.org/docs/)
-- [GitHub OAuth 配置](https://decapcms.org/docs/github-backend/)
-- [Vercel 部署指南](https://vercel.com/docs)
+- [Netlify Identity 文档](https://docs.netlify.com/identity/identity/)
+- [Netlify CMS 教程](https://www.netlifycms.org/docs/add-to-your-site/)
 
 ---
 
 ## ⚠️ 注意事项
 
-1. **首次使用**需要完成OAuth配置才能登录
-2. **图片大小**建议压缩到600px宽度以内
+1. **首次登录**需要先在Netlify添加管理员用户
+2. **图片大小**建议压缩到600px宽度
 3. **发布流程**：编辑 → 预览 → 保存草稿 → 发布
-4. **备份**：每次发布会自动创建Git提交
+4. **自动备份**：每次发布会创建Git提交
 
 ---
 
 ## 🆘 常见问题
 
 **Q: 无法登录后台？**
-A: 检查OAuth配置是否正确，Client ID和Secret是否匹配
+A: 确保已在Netlify Identity中添加用户并设置密码
 
 **Q: 图片上传失败？**
-A: 检查图片大小是否过大，建议先压缩
+A: 检查图片大小，建议先压缩
 
 **Q: 发布后看不到更新？**
-A: GitHub Pages需要几分钟更新，等待后刷新
+A: Netlify自动部署需要几秒，刷新页面即可
+
+**Q: 想添加其他管理员？**
+A: 在Netlify Identity页面邀请新用户
 
 ---
 
