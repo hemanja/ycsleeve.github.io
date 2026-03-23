@@ -1,0 +1,10 @@
+{
+  "name": "yc-cms-oauth",
+  "version": "1.0.0",
+  "description": "YC INSULATION CMS OAuth Server",
+  "scripts": {
+    "dev": "vercel dev",
+    "deploy": "vercel --prod"
+  },
+  "dependencies": {}
+}
