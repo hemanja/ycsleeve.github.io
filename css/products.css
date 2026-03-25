@@ -1,5 +1,12 @@
 /* Product Detail Page Styles - Dark Theme */
 
+/* Global image fix */
+.product-detail img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* Model tabs for multi-model product pages */
 .model-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
 .model-tab { 
@@ -115,10 +122,23 @@
     cursor: pointer;
     transition: all 0.3s;
     border: 1px solid rgba(255, 107, 44, 0.1);
+    overflow: hidden;
+}
+
+.thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
 }
 
 .thumb:hover {
     border-color: var(--accent);
+}
+
+.thumb.active {
+    border-color: var(--accent);
+    border-width: 2px;
 }
 
 .product-content h1 {
