@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玻璃纤维套管编织过程动画 - YC INSULATION</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #0d0d1a 0%, #1a1a2e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #f39c12;
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            height: 500px;
+            background: rgba(0,0,0,0.4);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        button.secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .info {
+            margin-top: 20px;
+            max-width: 500px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.85rem;
+            text-align: center;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧵 玻璃纤维套管编织过程</h1>
+    <p class="subtitle">Sleeve Braiding Process Animation</p>
+
+    <div class="container">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+        <button onclick="reset()">重新开始</button>
+        <button onclick="togglePause()">暂停/继续</button>
+        <button class="secondary" onclick="changeSpeed(0.5)">慢速</button>
+        <button class="secondary" onclick="changeSpeed(1)">正常</button>
+        <button class="secondary" onclick="changeSpeed(2)">快速</button>
+    </div>
+
+    <div class="info">
+        <p>模拟编织机工作原理：纱线从编织盘旋转送出，在中心汇合成套管。</p>
+        <p>白色纱线顺时针旋转，金色纱线逆时针旋转。</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, centerX, centerY;
+        let isPaused = false;
+        let speed = 1;
+        let time = 0;
+        
+        // 编织参数
+        const CARRIER_COUNT = 16;     // 载纱器数量
+        const DISK_RADIUS = 200;      // 编织盘半径
+        const TUBE_RADIUS = 40;       // 套管半径
+        const TUBE_HEIGHT = 300;      // 套管高度
+        const YARN_SPEED = 0.8;       // 纱线移动速度
+        
+        // 载纱器状态
+        let carriers = [];
+        
+        // 已编织的纱线段
+        let wovenYarns = [];
+        
+        function init() {
+            carriers = [];
+            wovenYarns = [];
+            
+            // 初始化载纱器（交替分布）
+            for (let i = 0; i < CARRIER_COUNT; i++) {
+                const angle = (i / CARRIER_COUNT) * Math.PI * 2;
+                const direction = i % 2 === 0 ? 1 : -1; // 交替方向
+                const track = Math.floor(i / 2); // 轨道编号
+                
+                carriers.push({
+                    id: i,
+                    angle: angle,
+                    direction: direction,
+                    track: track,
+                    color: i % 2 === 0 ? '#ffffff' : '#f39c12',
+                    history: [] // 纱线路径历史
+                });
+            }
+        }
+
+        function resize() {
+            width = canvas.width = canvas.offsetWidth * 2;
+            height = canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+            centerX = width / 4;
+            centerY = height / 4;
+        }
+
+        // 计算载纱器在编织盘上的位置
+        function getCarrierPosition(carrier, t) {
+            // 载纱器沿轨道运动（正弦波轨迹）
+            const orbitRadius = DISK_RADIUS - carrier.track * 20;
+            const angle = carrier.angle + t * carrier.direction * 0.8;
+            
+            // 摆动轨迹（模拟编织机的槽道）
+            const wobble = Math.sin(angle * 2) * 15;
+            
+            const x = centerX + (orbitRadius + wobble) * Math.cos(angle);
+            const y = centerY - TUBE_HEIGHT / 2 - 80 + (orbitRadius + wobble) * Math.sin(angle) * 0.3;
+            
+            return { x, y, angle };
+        }
+
+        // 计算纱线从载纱器到套管的路径
+        function getYarnPath(carrier, t, length) {
+            const path = [];
+            const carrierPos = getCarrierPosition(carrier, t);
+            
+            // 起点：载纱器位置
+            path.push(carrierPos);
+            
+            // 纱线从载纱器向下延伸，逐渐汇入套管
+            const steps = Math.min(length, carrier.history.length);
+            
+            for (let i = 0; i < steps; i++) {
+                const hist = carrier.history[carrier.history.length - 1 - i];
+                path.push(hist);
+            }
+            
+            return path;
+        }
+
+        // 更新载纱器位置
+        function updateCarriers(dt) {
+            carriers.forEach(carrier => {
+                const currentPos = getCarrierPosition(carrier, time);
+                
+                // 计算纱线在套管上的汇合点
+                const tubeAngle = carrier.angle + time * carrier.direction * 0.8;
+                const tubeY = centerY + TUBE_HEIGHT / 2 - (time * YARN_SPEED * 10) % TUBE_HEIGHT;
+                const tubeX = centerX + TUBE_RADIUS * Math.cos(tubeAngle);
+                
+                // 保存历史位置（纱线轨迹）
+                if (carrier.history.length === 0 || 
+                    Math.abs(carrier.history[carrier.history.length - 1].y - tubeY) > 2) {
+                    carrier.history.push({ 
+                        x: tubeX, 
+                        y: tubeY,
+                        angle: tubeAngle
+                    });
+                }
+                
+                // 限制历史长度
+                if (carrier.history.length > 200) {
+                    carrier.history.shift();
+                }
+            });
+        }
+
+        // 绘制编织盘
+        function drawDisk() {
+            // 编织盘底座
+            ctx.beginPath();
+            ctx.arc(centerX, centerY - TUBE_HEIGHT / 2 - 80, DISK_RADIUS, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // 绘制轨道
+            for (let i = 0; i < CARRIER_COUNT / 2; i++) {
+                ctx.beginPath();
+                ctx.arc(centerX, centerY - TUBE_HEIGHT / 2 - 80, DISK_RADIUS - i * 20, 0, Math.PI * 2);
+                ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+                ctx.lineWidth = 1;
+                ctx.stroke();
+            }
+        }
+
+        // 绘制载纱器
+        function drawCarriers() {
+            carriers.forEach(carrier => {
+                const pos = getCarrierPosition(carrier, time);
+                
+                // 载纱器本体
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 8, 0, Math.PI * 2);
+                ctx.fillStyle = carrier.color;
+                ctx.fill();
+                
+                // 发光效果
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, 12, 0, Math.PI * 2);
+                ctx.strokeStyle = carrier.color;
+                ctx.globalAlpha = 0.3;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+            });
+        }
+
+        // 绘制纱线
+        function drawYarns() {
+            carriers.forEach(carrier => {
+                if (carrier.history.length < 2) return;
+                
+                // 绘制纱线路径
+                ctx.beginPath();
+                ctx.moveTo(carrier.history[0].x, carrier.history[0].y);
+                
+                for (let i = 1; i < carrier.history.length; i++) {
+                    const point = carrier.history[i];
+                    ctx.lineTo(point.x, point.y);
+                }
+                
+                // 渐变效果
+                const gradient = ctx.createLinearGradient(
+                    carrier.history[0].x, carrier.history[0].y,
+                    carrier.history[carrier.history.length - 1].x, 
+                    carrier.history[carrier.history.length - 1].y
+                );
+                gradient.addColorStop(0, carrier.color);
+                gradient.addColorStop(1, carrier.color + '40');
+                
+                ctx.strokeStyle = gradient;
+                ctx.lineWidth = 2.5;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                ctx.stroke();
+            });
+        }
+
+        // 绘制套管轮廓
+        function drawTube() {
+            // 套管主体
+            ctx.beginPath();
+            ctx.rect(centerX - TUBE_RADIUS, centerY - TUBE_HEIGHT / 2, TUBE_RADIUS * 2, TUBE_HEIGHT);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // 顶部椭圆
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY - TUBE_HEIGHT / 2, TUBE_RADIUS, 12, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // 底部椭圆
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY + TUBE_HEIGHT / 2, TUBE_RADIUS, 12, 0, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        // 绘制编织纹理（在套管上）
+        function drawWeavePattern() {
+            // 在套管区域绘制菱形编织纹理
+            const startY = centerY - TUBE_HEIGHT / 2 + 50;
+            const endY = centerY + TUBE_HEIGHT / 2;
+            
+            for (let y = startY; y < endY; y += 20) {
+                for (let i = 0; i < CARRIER_COUNT; i++) {
+                    const angle = (i / CARRIER_COUNT) * Math.PI * 2 + y * 0.05 + time;
+                    const x = centerX + TUBE_RADIUS * Math.cos(angle);
+                    const z = Math.sin(angle);
+                    
+                    if (z > 0) {
+                        ctx.beginPath();
+                        ctx.arc(x, y, 3, 0, Math.PI * 2);
+                        ctx.fillStyle = i % 2 === 0 ? 'rgba(255,255,255,0.4)' : 'rgba(243,156,18,0.4)';
+                        ctx.fill();
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            // 清空画布
+            ctx.fillStyle = '#0d0d1a';
+            ctx.fillRect(0, 0, width / 2, height / 2);
+            
+            // 更新状态
+            if (!isPaused) {
+                updateCarriers(speed);
+                time += 0.02 * speed;
+            }
+            
+            // 绘制顺序（从后到前）
+            drawDisk();
+            drawTube();
+            drawWeavePattern();
+            drawYarns();
+            drawCarriers();
+            
+            requestAnimationFrame(animate);
+        }
+
+        function reset() {
+            init();
+            time = 0;
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+        }
+
+        function changeSpeed(s) {
+            speed = s;
+        }
+
+        // 初始化
+        window.addEventListener('resize', resize);
+        resize();
+        init();
+        animate();
+    </script>
+</body>
+</html>
