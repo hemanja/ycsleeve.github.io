@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>纱线编织套管动画 - YC INSULATION</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #0d0d1a 70%, #050510 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            text-align: center;
+            text-shadow: 0 2px 10px rgba(243, 156, 18, 0.5);
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            height: 650px;
+            background: transparent;
+            overflow: hidden;
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 8px 18px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(243, 156, 18, 0.4);
+        }
+
+        button.secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+    </style>
+</head>
+<body>
+    <h1>🧵 玻璃纤维套管编织</h1>
+
+    <div class="container">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+        <button onclick="reset()">重新开始</button>
+        <button onclick="togglePause()">暂停/继续</button>
+        <button class="secondary" onclick="changeSpeed(0.5)">慢速</button>
+        <button class="secondary" onclick="changeSpeed(1)">正常</button>
+        <button class="secondary" onclick="changeSpeed(2)">快速</button>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, centerX, centerY;
+        let isPaused = false;
+        let speed = 1;
+        let time = 0;
+        
+        // 编织参数
+        const YARN_COUNT = 24;          // 纱线数量
+        const TOP_RADIUS = 120;         // 顶部纱线分布半径
+        const TUBE_RADIUS = 40;         // 套管半径
+        const TUBE_START_Y = 200;       // 套管开始位置
+        const WEAVE_START_Y = 150;      // 编织开始位置
+        
+        let yarns = [];
+        
+        function init() {
+            yarns = [];
+            
+            for (let i = 0; i < YARN_COUNT; i++) {
+                const angle = (i / YARN_COUNT) * Math.PI * 2;
+                const direction = i % 2 === 0 ? 1 : -1;
+                
+                yarns.push({
+                    id: i,
+                    baseAngle: angle,
+                    direction: direction,
+                    color: i % 2 === 0 ? '#ffffff' : '#f39c12',
+                    glowColor: i % 2 === 0 ? 'rgba(255,255,255,0.8)' : 'rgba(243,156,18,0.8)',
+                    history: []
+                });
+            }
+        }
+
+        function resize() {
+            width = canvas.width = canvas.offsetWidth * 2;
+            height = canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+            centerX = width / 4;
+            centerY = height / 4;
+        }
+
+        // 获取纱线在套管上的位置
+        function getTubePosition(yarn, t, yOffset) {
+            const spiralAngle = yarn.baseAngle + t * 0.8 * yarn.direction + yOffset * 0.025 * yarn.direction;
+            const x = centerX + TUBE_RADIUS * Math.cos(spiralAngle);
+            const y = TUBE_START_Y + yOffset;
+            const z = Math.sin(spiralAngle);
+            return { x, y, z, angle: spiralAngle };
+        }
+
+        // 绘制单根纱线
+        function drawYarn(yarn, t) {
+            const tubeLength = Math.min(t * 35, 350);
+            
+            // 纱线路径点
+            const points = [];
+            
+            // 起点：顶部（纱线来源）
+            const startAngle = yarn.baseAngle + t * 0.8 * yarn.direction;
+            const startX = centerX + TOP_RADIUS * Math.cos(startAngle);
+            const startY = 30;
+            points.push({ x: startX, y: startY, z: 0 });
+            
+            // 向下汇聚到编织区
+            const convergeY = WEAVE_START_Y - 30;
+            const convergeX = centerX + TOP_RADIUS * 0.3 * Math.cos(startAngle);
+            points.push({ x: convergeX, y: convergeY, z: 0 });
+            
+            // 编织区入口
+            const entryX = centerX + TUBE_RADIUS * Math.cos(startAngle);
+            const entryY = WEAVE_START_Y;
+            const entryZ = Math.sin(startAngle);
+            points.push({ x: entryX, y: entryY, z: entryZ });
+            
+            // 套管内的螺旋路径
+            for (let i = 0; i < tubeLength; i += 6) {
+                const pos = getTubePosition(yarn, t, i);
+                points.push(pos);
+            }
+            
+            // 按深度分段绘制
+            const segments = [];
+            for (let i = 0; i < points.length - 1; i++) {
+                segments.push({
+                    start: points[i],
+                    end: points[i + 1],
+                    avgZ: (points[i].z + points[i + 1].z) / 2,
+                    index: i
+                });
+            }
+            
+            segments.sort((a, b) => a.avgZ - b.avgZ);
+            
+            // 绘制
+            segments.forEach(seg => {
+                const depth = (seg.avgZ + 1) / 2;
+                const alpha = 0.25 + depth * 0.75;
+                const lineWidth = 1.2 + depth * 2.5;
+                
+                ctx.beginPath();
+                ctx.moveTo(seg.start.x, seg.start.y);
+                ctx.lineTo(seg.end.x, seg.end.y);
+                ctx.strokeStyle = yarn.color;
+                ctx.globalAlpha = alpha;
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                ctx.lineJoin = 'round';
+                
+                // 前面的纱线加发光
+                if (depth > 0.5) {
+                    ctx.shadowColor = yarn.glowColor;
+                    ctx.shadowBlur = 10;
+                }
+                
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            });
+            
+            // 纱线末端光点
+            if (points.length > 0) {
+                const lastPoint = points[points.length - 1];
+                const depth = (lastPoint.z + 1) / 2;
+                
+                ctx.beginPath();
+                ctx.arc(lastPoint.x, lastPoint.y, 3 + depth * 2.5, 0, Math.PI * 2);
+                ctx.fillStyle = yarn.color;
+                ctx.globalAlpha = 0.5 + depth * 0.5;
+                ctx.shadowColor = yarn.glowColor;
+                ctx.shadowBlur = 15;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            }
+            
+            // 起点光点
+            ctx.beginPath();
+            ctx.arc(startX, startY, 5, 0, Math.PI * 2);
+            ctx.fillStyle = yarn.color;
+            ctx.globalAlpha = 0.6;
+            ctx.shadowColor = yarn.glowColor;
+            ctx.shadowBlur = 12;
+            ctx.fill();
+            ctx.shadowBlur = 0;
+            ctx.globalAlpha = 1;
+        }
+
+        // 绘制套管轮廓（非常淡）
+        function drawTubeHint(t) {
+            const tubeLength = Math.min(t * 35, 350);
+            
+            // 淡淡的套管边界
+            ctx.beginPath();
+            ctx.moveTo(centerX - TUBE_RADIUS, TUBE_START_Y);
+            ctx.lineTo(centerX - TUBE_RADIUS, TUBE_START_Y + tubeLength);
+            ctx.moveTo(centerX + TUBE_RADIUS, TUBE_START_Y);
+            ctx.lineTo(centerX + TUBE_RADIUS, TUBE_START_Y + tubeLength);
+            ctx.strokeStyle = 'rgba(255,255,255,0.08)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+
+        // 绘制编织纹理
+        function drawWeaveTexture(t) {
+            const tubeLength = Math.min(t * 35, 350);
+            
+            for (let y = 0; y < tubeLength; y += 10) {
+                for (let i = 0; i < YARN_COUNT; i++) {
+                    const pos = getTubePosition(yarns[i], t, y);
+                    
+                    if (pos.z > 0.5) {
+                        ctx.beginPath();
+                        ctx.arc(pos.x, TUBE_START_Y + y, 2, 0, Math.PI * 2);
+                        ctx.fillStyle = yarns[i].color;
+                        ctx.globalAlpha = 0.3 + pos.z * 0.4;
+                        ctx.fill();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            // 清空（深色背景）
+            ctx.fillStyle = 'rgba(5, 5, 16, 1)';
+            ctx.fillRect(0, 0, width / 2, height / 2);
+            
+            if (!isPaused) {
+                time += 0.016 * speed;
+            }
+            
+            // 绘制
+            drawTubeHint(time);
+            drawWeaveTexture(time);
+            
+            // 按深度排序纱线
+            const yarnOrder = yarns.map(y => ({
+                yarn: y,
+                z: Math.sin(y.baseAngle + time * 0.8 * y.direction)
+            }));
+            yarnOrder.sort((a, b) => a.z - b.z);
+            yarnOrder.forEach(item => drawYarn(item.yarn, time));
+            
+            requestAnimationFrame(animate);
+        }
+
+        function reset() {
+            init();
+            time = 0;
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+        }
+
+        function changeSpeed(s) {
+            speed = s;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        init();
+        animate();
+    </script>
+</body>
+</html>
