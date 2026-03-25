@@ -1,5 +1,43 @@
 /* Product Detail Page Styles - Dark Theme */
 
+/* Model tabs for multi-model product pages */
+.model-tabs { display: flex; gap: 10px; margin-bottom: 30px; flex-wrap: wrap; }
+.model-tab { 
+    padding: 15px 30px; 
+    background: rgba(255,255,255,0.05); 
+    border: 2px solid rgba(255, 107, 44, 0.3); 
+    border-radius: 10px; 
+    cursor: pointer; 
+    transition: all 0.3s; 
+    color: var(--text-secondary);
+}
+.model-tab:hover { border-color: var(--accent); }
+.model-tab.active { 
+    background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%); 
+    color: white; 
+    border-color: #ff6b2c; 
+}
+.model-content { display: none; }
+.model-content.active { display: block; }
+
+/* Ensure hidden model content doesn't affect layout */
+.model-content:not(.active) {
+    position: absolute;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+/* Fix for product-content with embedded images */
+.product-content .product-applications img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+}
+
+.product-content .product-applications {
+    overflow: hidden;
+}
+
 .breadcrumb {
     padding: 80px 0 20px;
     font-size: 14px;
