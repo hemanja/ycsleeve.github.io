@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玻璃纤维套管编织机动画 - YC INSULATION</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(180deg, #0d0d1a 0%, #1a1a2e 50%, #16213e 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            font-size: 1.6rem;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+
+        .subtitle {
+            color: #f39c12;
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .container {
+            position: relative;
+            width: 100%;
+            max-width: 700px;
+            height: 600px;
+            background: rgba(0,0,0,0.5);
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.6);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        .controls {
+            margin-top: 15px;
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        button {
+            padding: 8px 16px;
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.85rem;
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button.secondary {
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.3);
+        }
+
+        .legend {
+            margin-top: 15px;
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.8rem;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧵 玻璃纤维套管编织机</h1>
+    <p class="subtitle">模拟真实编织机：纱筒 → 汇聚 → 编织 → 套管输出</p>
+
+    <div class="container">
+        <canvas id="canvas"></canvas>
+    </div>
+
+    <div class="controls">
+        <button onclick="reset()">重新开始</button>
+        <button onclick="togglePause()">暂停/继续</button>
+        <button class="secondary" onclick="changeSpeed(0.5)">慢速</button>
+        <button class="secondary" onclick="changeSpeed(1)">正常</button>
+        <button class="secondary" onclick="changeSpeed(2)">快速</button>
+    </div>
+
+    <div class="legend">
+        <div class="legend-item">
+            <div class="legend-color" style="background: #fff;"></div>
+            <span>白色纱线</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-color" style="background: #f39c12;"></div>
+            <span>金色纱线</span>
+        </div>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        
+        let width, height, centerX, centerY;
+        let isPaused = false;
+        let speed = 1;
+        let time = 0;
+        
+        // 编织机参数
+        const BOBBIN_COUNT = 24;        // 纱筒数量
+        const CREEL_RADIUS = 220;       // 纱筒架半径
+        const BOBBIN_RADIUS = 15;       // 纱筒半径
+        const BRAID_ZONE_Y = 150;       // 编织区Y位置（从顶部）
+        const TUBE_RADIUS = 50;         // 套管半径
+        const TUBE_START_Y = 180;       // 套管开始Y位置
+        
+        // 纱筒
+        let bobbins = [];
+        
+        function init() {
+            bobbins = [];
+            
+            // 初始化纱筒（环形排列）
+            for (let i = 0; i < BOBBIN_COUNT; i++) {
+                const angle = (i / BOBBIN_COUNT) * Math.PI * 2;
+                const direction = i % 2 === 0 ? 1 : -1;
+                
+                bobbins.push({
+                    id: i,
+                    angle: angle,
+                    direction: direction,
+                    color: i % 2 === 0 ? '#ffffff' : '#f39c12',
+                    rotation: 0, // 纱筒架整体旋转角度
+                    yarnHistory: [] // 纱线在套管上的历史位置
+                });
+            }
+        }
+
+        function resize() {
+            width = canvas.width = canvas.offsetWidth * 2;
+            height = canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+            centerX = width / 4;
+            centerY = height / 4;
+        }
+
+        // 获取纱筒位置（底部环形架）
+        function getBobbinPosition(bobbin, t) {
+            // 纱筒架整体缓慢旋转
+            const frameRotation = t * 0.3;
+            const angle = bobbin.angle + frameRotation * bobbin.direction;
+            
+            const x = centerX + CREEL_RADIUS * Math.cos(angle);
+            const y = height / 2 - 50; // 底部位置
+            
+            return { x, y, angle };
+        }
+
+        // 获取纱线在编织区的位置
+        function getBraidPosition(bobbin, t, yOffset) {
+            const frameRotation = t * 0.3;
+            const angle = bobbin.angle + frameRotation * bobbin.direction;
+            
+            // 编织区的旋转（与纱筒同步但更快）
+            const braidAngle = angle + yOffset * 0.03 * bobbin.direction;
+            
+            const x = centerX + TUBE_RADIUS * Math.cos(braidAngle);
+            const y = TUBE_START_Y + yOffset;
+            const z = Math.sin(braidAngle);
+            
+            return { x, y, z, angle: braidAngle };
+        }
+
+        // 绘制纱筒架（底部）
+        function drawCreel(t) {
+            // 外圈框架
+            ctx.beginPath();
+            ctx.arc(centerX, height / 2 - 50, CREEL_RADIUS, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.15)';
+            ctx.lineWidth = 3;
+            ctx.stroke();
+            
+            // 内圈框架
+            ctx.beginPath();
+            ctx.arc(centerX, height / 2 - 50, CREEL_RADIUS - 40, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.1)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // 标签
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('纱筒架', centerX, height / 2 - 50 + CREEL_RADIUS + 25);
+        }
+
+        // 绘制纱筒
+        function drawBobbins(t) {
+            bobbins.forEach(bobbin => {
+                const pos = getBobbinPosition(bobbin, t);
+                
+                // 纱筒底座
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, BOBBIN_RADIUS, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(40, 40, 50, 0.9)';
+                ctx.fill();
+                ctx.strokeStyle = bobbin.color;
+                ctx.lineWidth = 2;
+                ctx.stroke();
+                
+                // 纱筒顶部（绿色）
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y - 5, BOBBIN_RADIUS - 3, 0, Math.PI * 2);
+                ctx.fillStyle = bobbin.color === '#ffffff' ? 'rgba(100, 180, 100, 0.8)' : 'rgba(180, 140, 80, 0.8)';
+                ctx.fill();
+                
+                // 发光
+                ctx.beginPath();
+                ctx.arc(pos.x, pos.y, BOBBIN_RADIUS + 5, 0, Math.PI * 2);
+                ctx.strokeStyle = bobbin.color;
+                ctx.globalAlpha = 0.3;
+                ctx.lineWidth = 1;
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+            });
+        }
+
+        // 绘制编织区（中部）
+        function drawBraidZone() {
+            // 编织区光环
+            ctx.beginPath();
+            ctx.ellipse(centerX, BRAID_ZONE_Y, TUBE_RADIUS + 20, 15, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(243, 156, 18, 0.4)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // 标签
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '11px Arial';
+            ctx.textAlign = 'center';
+            ctx.fillText('编织区', centerX, BRAID_ZONE_Y - 30);
+        }
+
+        // 绘制套管
+        function drawTube(t) {
+            const tubeLength = Math.min(t * 40, 250);
+            
+            // 套管轮廓
+            ctx.beginPath();
+            ctx.moveTo(centerX - TUBE_RADIUS, TUBE_START_Y);
+            ctx.lineTo(centerX - TUBE_RADIUS, TUBE_START_Y + tubeLength);
+            ctx.strokeStyle = 'rgba(255, 255, 255, 0.2)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            ctx.beginPath();
+            ctx.moveTo(centerX + TUBE_RADIUS, TUBE_START_Y);
+            ctx.lineTo(centerX + TUBE_RADIUS, TUBE_START_Y + tubeLength);
+            ctx.stroke();
+            
+            // 顶部椭圆
+            ctx.beginPath();
+            ctx.ellipse(centerX, TUBE_START_Y, TUBE_RADIUS, 12, 0, 0, Math.PI * 2);
+            ctx.strokeStyle = 'rgba(243, 156, 18, 0.5)';
+            ctx.lineWidth = 2;
+            ctx.stroke();
+            
+            // 底部椭圆
+            if (tubeLength > 20) {
+                ctx.beginPath();
+                ctx.ellipse(centerX, TUBE_START_Y + tubeLength, TUBE_RADIUS, 12, 0, 0, Math.PI * 2);
+                ctx.stroke();
+            }
+            
+            // 标签
+            ctx.fillStyle = 'rgba(255,255,255,0.5)';
+            ctx.font = '11px Arial';
+            ctx.fillText('套管输出', centerX + TUBE_RADIUS + 35, TUBE_START_Y + tubeLength / 2);
+        }
+
+        // 绘制纱线（从纱筒到编织区再到套管）
+        function drawYarn(bobbin, t) {
+            const bobbinPos = getBobbinPosition(bobbin, t);
+            
+            // 纱线路径点
+            const points = [];
+            
+            // 起点：纱筒
+            points.push({ x: bobbinPos.x, y: bobbinPos.y - BOBBIN_RADIUS, z: 0 });
+            
+            // 向上汇聚到编织区（锥形路径）
+            const midY1 = (bobbinPos.y - BOBBIN_RADIUS + BRAID_ZONE_Y) / 2 + 30;
+            const midX1 = centerX + (bobbinPos.x - centerX) * 0.5;
+            points.push({ x: midX1, y: midY1, z: 0 });
+            
+            // 编织区入口
+            const entryAngle = bobbin.angle + t * 0.3 * bobbin.direction;
+            const entryX = centerX + TUBE_RADIUS * Math.cos(entryAngle);
+            const entryY = BRAID_ZONE_Y;
+            const entryZ = Math.sin(entryAngle);
+            points.push({ x: entryX, y: entryY, z: entryZ });
+            
+            // 套管内的螺旋路径
+            const tubeLength = Math.min(t * 40, 250);
+            for (let i = 0; i < tubeLength; i += 8) {
+                const pos = getBraidPosition(bobbin, t, i);
+                points.push(pos);
+            }
+            
+            // 按深度排序绘制
+            const segments = [];
+            for (let i = 0; i < points.length - 1; i++) {
+                segments.push({
+                    start: points[i],
+                    end: points[i + 1],
+                    avgZ: (points[i].z + points[i + 1].z) / 2
+                });
+            }
+            
+            segments.sort((a, b) => a.avgZ - b.avgZ);
+            
+            // 绘制纱线段
+            segments.forEach(seg => {
+                const depth = (seg.avgZ + 1) / 2;
+                const alpha = 0.3 + depth * 0.7;
+                const lineWidth = 1.5 + depth * 2;
+                
+                ctx.beginPath();
+                ctx.moveTo(seg.start.x, seg.start.y);
+                ctx.lineTo(seg.end.x, seg.end.y);
+                ctx.strokeStyle = bobbin.color;
+                ctx.globalAlpha = alpha;
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                
+                if (depth > 0.6) {
+                    ctx.shadowColor = bobbin.color;
+                    ctx.shadowBlur = 8;
+                }
+                
+                ctx.stroke();
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            });
+            
+            // 纱线末端发光点
+            if (points.length > 0) {
+                const lastPoint = points[points.length - 1];
+                const depth = (lastPoint.z + 1) / 2;
+                
+                ctx.beginPath();
+                ctx.arc(lastPoint.x, lastPoint.y, 3 + depth * 2, 0, Math.PI * 2);
+                ctx.fillStyle = bobbin.color;
+                ctx.globalAlpha = 0.5 + depth * 0.5;
+                ctx.shadowColor = bobbin.color;
+                ctx.shadowBlur = 12;
+                ctx.fill();
+                ctx.shadowBlur = 0;
+                ctx.globalAlpha = 1;
+            }
+        }
+
+        // 绘制编织纹理（菱形网格）
+        function drawWeaveTexture(t) {
+            const tubeLength = Math.min(t * 40, 250);
+            
+            for (let y = 0; y < tubeLength; y += 12) {
+                for (let i = 0; i < BOBBIN_COUNT; i++) {
+                    const pos = getBraidPosition(bobbins[i], t, y);
+                    
+                    if (pos.z > 0.4) {
+                        ctx.beginPath();
+                        ctx.arc(pos.x, TUBE_START_Y + y, 2.5, 0, Math.PI * 2);
+                        ctx.fillStyle = bobbins[i].color;
+                        ctx.globalAlpha = 0.4 + pos.z * 0.4;
+                        ctx.fill();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+        }
+
+        function animate() {
+            // 清空
+            ctx.fillStyle = 'rgba(13, 13, 26, 1)';
+            ctx.fillRect(0, 0, width / 2, height / 2);
+            
+            if (!isPaused) {
+                time += 0.016 * speed;
+            }
+            
+            // 绘制顺序
+            drawCreel(time);
+            drawBraidZone();
+            drawTube(time);
+            drawWeaveTexture(time);
+            
+            // 绘制所有纱线（按深度排序）
+            const yarnOrder = bobbins.map(b => ({
+                bobbin: b,
+                z: Math.sin(b.angle + time * 0.3 * b.direction)
+            }));
+            yarnOrder.sort((a, b) => a.z - b.z);
+            yarnOrder.forEach(item => drawYarn(item.bobbin, time));
+            
+            drawBobbins(time);
+            
+            requestAnimationFrame(animate);
+        }
+
+        function reset() {
+            init();
+            time = 0;
+        }
+
+        function togglePause() {
+            isPaused = !isPaused;
+        }
+
+        function changeSpeed(s) {
+            speed = s;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+        init();
+        animate();
+    </script>
+</body>
+</html>
