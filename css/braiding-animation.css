@@ -1,0 +1,226 @@
+/* ========================================
+   纱线编织套管动画背景 - CSS 版本
+   可直接用于网站首页
+   ======================================== */
+
+/* 编织背景容器 */
+.braiding-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+}
+
+/* Canvas 样式 */
+.braiding-bg canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* 叠加纹理 */
+.braiding-bg::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: 
+        radial-gradient(ellipse at center, transparent 0%, rgba(0,0,0,0.3) 100%);
+    pointer-events: none;
+}
+
+/* ========================================
+   动画纱线 - CSS 备选方案（无 JS）
+   ======================================== */
+
+.yarn-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.yarn {
+    position: absolute;
+    width: 200%;
+    height: 2px;
+    background: linear-gradient(90deg, 
+        transparent 0%, 
+        rgba(255,255,255,0.3) 25%, 
+        rgba(255,255,255,0.8) 50%, 
+        rgba(255,255,255,0.3) 75%, 
+        transparent 100%);
+    animation: weave 4s ease-in-out infinite;
+    transform-origin: center;
+}
+
+.yarn:nth-child(odd) {
+    animation-direction: reverse;
+}
+
+.yarn:nth-child(1) { top: 10%; animation-delay: 0s; transform: rotate(-15deg); }
+.yarn:nth-child(2) { top: 15%; animation-delay: 0.2s; transform: rotate(15deg); }
+.yarn:nth-child(3) { top: 20%; animation-delay: 0.4s; transform: rotate(-15deg); }
+.yarn:nth-child(4) { top: 25%; animation-delay: 0.6s; transform: rotate(15deg); }
+.yarn:nth-child(5) { top: 30%; animation-delay: 0.8s; transform: rotate(-15deg); }
+.yarn:nth-child(6) { top: 35%; animation-delay: 1s; transform: rotate(15deg); }
+.yarn:nth-child(7) { top: 40%; animation-delay: 1.2s; transform: rotate(-15deg); }
+.yarn:nth-child(8) { top: 45%; animation-delay: 1.4s; transform: rotate(15deg); }
+.yarn:nth-child(9) { top: 50%; animation-delay: 1.6s; transform: rotate(-15deg); }
+.yarn:nth-child(10) { top: 55%; animation-delay: 1.8s; transform: rotate(15deg); }
+.yarn:nth-child(11) { top: 60%; animation-delay: 2s; transform: rotate(-15deg); }
+.yarn:nth-child(12) { top: 65%; animation-delay: 2.2s; transform: rotate(15deg); }
+.yarn:nth-child(13) { top: 70%; animation-delay: 2.4s; transform: rotate(-15deg); }
+.yarn:nth-child(14) { top: 75%; animation-delay: 2.6s; transform: rotate(15deg); }
+.yarn:nth-child(15) { top: 80%; animation-delay: 2.8s; transform: rotate(-15deg); }
+.yarn:nth-child(16) { top: 85%; animation-delay: 3s; transform: rotate(15deg); }
+.yarn:nth-child(17) { top: 90%; animation-delay: 3.2s; transform: rotate(-15deg); }
+.yarn:nth-child(18) { top: 95%; animation-delay: 3.4s; transform: rotate(15deg); }
+
+@keyframes weave {
+    0%, 100% {
+        transform: translateX(-25%) rotate(var(--rotation, -15deg));
+        opacity: 0.3;
+    }
+    50% {
+        transform: translateX(25%) rotate(var(--rotation, -15deg));
+        opacity: 1;
+    }
+}
+
+/* ========================================
+   玻璃纤维套管编织效果
+   ======================================== */
+
+.sleeve-weave {
+    position: relative;
+    width: 300px;
+    height: 400px;
+    margin: 0 auto;
+}
+
+.weave-strand {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.weave-strand::before {
+    content: '';
+    position: absolute;
+    width: 8px;
+    height: 100%;
+    background: linear-gradient(180deg,
+        transparent 0%,
+        rgba(255,255,255,0.1) 10%,
+        rgba(255,255,255,0.4) 20%,
+        rgba(255,255,255,0.4) 80%,
+        rgba(255,255,255,0.1) 90%,
+        transparent 100%);
+    animation: strandMove 3s ease-in-out infinite;
+    border-radius: 4px;
+}
+
+.weave-strand:nth-child(odd)::before {
+    animation-direction: reverse;
+}
+
+.weave-strand:nth-child(1)::before { left: 10%; animation-delay: 0s; }
+.weave-strand:nth-child(2)::before { left: 20%; animation-delay: 0.1s; }
+.weave-strand:nth-child(3)::before { left: 30%; animation-delay: 0.2s; }
+.weave-strand:nth-child(4)::before { left: 40%; animation-delay: 0.3s; }
+.weave-strand:nth-child(5)::before { left: 50%; animation-delay: 0.4s; }
+.weave-strand:nth-child(6)::before { left: 60%; animation-delay: 0.5s; }
+.weave-strand:nth-child(7)::before { left: 70%; animation-delay: 0.6s; }
+.weave-strand:nth-child(8)::before { left: 80%; animation-delay: 0.7s; }
+.weave-strand:nth-child(9)::before { left: 90%; animation-delay: 0.8s; }
+
+@keyframes strandMove {
+    0%, 100% {
+        transform: translateX(-20px) skewX(5deg);
+    }
+    50% {
+        transform: translateX(20px) skewX(-5deg);
+    }
+}
+
+/* ========================================
+   脉冲编织效果
+   ======================================== */
+
+.pulse-weave {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 200px;
+    height: 300px;
+    border: 3px solid rgba(243, 156, 18, 0.3);
+    border-radius: 100px / 150px;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.pulse-weave::before,
+.pulse-weave::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 100px / 150px;
+    border: 2px solid rgba(243, 156, 18, 0.2);
+    animation: pulse 2s ease-in-out infinite;
+    animation-delay: 0.5s;
+}
+
+.pulse-weave::after {
+    width: 120%;
+    height: 120%;
+    animation-delay: 1s;
+    border-color: rgba(243, 156, 18, 0.1);
+}
+
+@keyframes pulse {
+    0%, 100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+    50% {
+        transform: translate(-50%, -50%) scale(1.05);
+        opacity: 0.8;
+    }
+}
+
+/* ========================================
+   响应式调整
+   ======================================== */
+
+@media (max-width: 768px) {
+    .sleeve-weave {
+        width: 200px;
+        height: 300px;
+    }
+    
+    .yarn {
+        height: 1.5px;
+    }
+}
+
+@media (max-width: 480px) {
+    .sleeve-weave {
+        width: 150px;
+        height: 220px;
+    }
+    
+    .yarn {
+        height: 1px;
+    }
+}
