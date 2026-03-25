@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>玻璃纤维套管编织动画 - YC INSULATION</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            min-height: 100vh;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            overflow-x: hidden;
+            padding: 20px;
+        }
+
+        h1 {
+            color: #fff;
+            text-align: center;
+            margin-bottom: 10px;
+            font-size: 2rem;
+        }
+
+        .subtitle {
+            color: #f39c12;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 1rem;
+        }
+
+        /* 编织动画容器 */
+        .braiding-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            height: 500px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+        }
+
+        canvas {
+            display: block;
+            width: 100%;
+            height: 100%;
+        }
+
+        /* 控制面板 */
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .control-btn {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: bold;
+        }
+
+        .control-btn.primary {
+            background: linear-gradient(135deg, #f39c12, #e74c3c);
+            color: #fff;
+        }
+
+        .control-btn.secondary {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            border: 2px solid rgba(255,255,255,0.3);
+        }
+
+        .control-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        }
+
+        .info {
+            margin-top: 20px;
+            max-width: 600px;
+            color: rgba(255,255,255,0.7);
+            text-align: center;
+            font-size: 0.9rem;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧵 玻璃纤维套管编织动画</h1>
+    <p class="subtitle">Fiberglass Sleeve Braiding Animation - 螺旋交错编织</p>
+
+    <div class="braiding-container">
+        <canvas id="braidingCanvas"></canvas>
+    </div>
+
+    <div class="controls">
+        <button class="control-btn primary" onclick="toggleAnimation()">暂停/播放</button>
+        <button class="control-btn secondary" onclick="changeSpeed(0.5)">慢速</button>
+        <button class="control-btn secondary" onclick="changeSpeed(1)">正常</button>
+        <button class="control-btn secondary" onclick="changeSpeed(2)">快速</button>
+        <button class="control-btn secondary" onclick="toggleColor()">切换颜色</button>
+    </div>
+
+    <div class="info">
+        <p><strong>编织原理：</strong>两组纱线以±45°螺旋角度交错编织，形成稳定的菱形网格结构。</p>
+        <p>白色纱线向右螺旋，金色纱线向左螺旋，在交点处上下穿插。</p>
+    </div>
+
+    <script>
+        const canvas = document.getElementById('braidingCanvas');
+        const ctx = canvas.getContext('2d');
+
+        let width, height;
+        let animationId;
+        let isPlaying = true;
+        let speedMultiplier = 1;
+        let time = 0;
+
+        // 编织参数
+        const YARN_COUNT = 16; // 每组纱线数量
+        const WEAVE_ANGLE = 45; // 编织角度
+        const SLEEVE_RADIUS = 80; // 套管半径
+        const SLEEVE_HEIGHT = 400; // 套管高度
+
+        let colorScheme = 0;
+        const colorSchemes = [
+            { left: '#ffffff', right: '#f39c12' },
+            { left: '#e74c3c', right: '#3498db' },
+            { left: '#2ecc71', right: '#9b59b6' },
+            { left: '#00ffff', right: '#ff6b6b' }
+        ];
+
+        function resize() {
+            width = canvas.width = canvas.offsetWidth * 2;
+            height = canvas.height = canvas.offsetHeight * 2;
+            ctx.scale(2, 2);
+        }
+
+        // 计算纱线在套管表面的位置
+        function getYarnPosition(yarnIndex, yOffset, direction, time) {
+            const centerX = width / 4;
+            const centerY = height / 4;
+            
+            // 编织角度转换为弧度
+            const angleRad = (WEAVE_ANGLE * Math.PI) / 180;
+            
+            // 螺旋角度 = 纱线索引 * 间距 + Y偏移 / 编织螺距
+            const pitch = SLEEVE_RADIUS * Math.tan(angleRad);
+            const spiralAngle = (yarnIndex * (360 / YARN_COUNT) + yOffset / pitch * 360 + time * direction * 30) * Math.PI / 180;
+            
+            // 3D坐标转2D（圆柱体投影）
+            const x = centerX + SLEEVE_RADIUS * Math.cos(spiralAngle);
+            const y = centerY + yOffset - SLEEVE_HEIGHT / 2;
+            const z = Math.sin(spiralAngle); // 用于前后判断
+            
+            return { x, y, z, angle: spiralAngle };
+        }
+
+        // 绘制单根纱线
+        function drawYarn(yarnIndex, direction, color, time) {
+            const points = [];
+            const segments = 100;
+            
+            // 生成纱线路径
+            for (let i = 0; i <= segments; i++) {
+                const yOffset = (i / segments) * SLEEVE_HEIGHT;
+                const pos = getYarnPosition(yarnIndex, yOffset, direction, time);
+                points.push(pos);
+            }
+            
+            // 根据z值排序，先绘制后面的
+            const allSegments = [];
+            for (let i = 0; i < points.length - 1; i++) {
+                const avgZ = (points[i].z + points[i + 1].z) / 2;
+                allSegments.push({
+                    start: points[i],
+                    end: points[i + 1],
+                    z: avgZ,
+                    index: i
+                });
+            }
+            
+            // 按z排序（后面的先画）
+            allSegments.sort((a, b) => a.z - b.z);
+            
+            // 绘制纱线段
+            allSegments.forEach(seg => {
+                const alpha = 0.3 + (seg.z + 1) * 0.35; // 根据深度调整透明度
+                const lineWidth = 2 + (seg.z + 1) * 1.5; // 根据深度调整粗细
+                
+                ctx.beginPath();
+                ctx.moveTo(seg.start.x, seg.start.y);
+                ctx.lineTo(seg.end.x, seg.end.y);
+                ctx.strokeStyle = color;
+                ctx.globalAlpha = alpha;
+                ctx.lineWidth = lineWidth;
+                ctx.lineCap = 'round';
+                ctx.stroke();
+                ctx.globalAlpha = 1;
+            });
+        }
+
+        // 绘制交点（编织纹理）
+        function drawWeavePattern(time) {
+            const centerX = width / 4;
+            const centerY = height / 4;
+            const colors = colorSchemes[colorScheme];
+            
+            // 绘制多个交点
+            for (let ring = 0; ring < 20; ring++) {
+                const y = centerY - SLEEVE_HEIGHT / 2 + ring * 20;
+                
+                for (let i = 0; i < YARN_COUNT; i++) {
+                    const angle1 = (i * 360 / YARN_COUNT + time * 30 + ring * 45) * Math.PI / 180;
+                    const x1 = centerX + SLEEVE_RADIUS * Math.cos(angle1);
+                    const z1 = Math.sin(angle1);
+                    
+                    // 交点高亮
+                    if (z1 > 0.5) {
+                        ctx.beginPath();
+                        ctx.arc(x1, y, 3 + z1 * 2, 0, Math.PI * 2);
+                        ctx.fillStyle = z1 > 0.8 ? '#fff' : (i % 2 === 0 ? colors.left : colors.right);
+                        ctx.globalAlpha = 0.6;
+                        ctx.fill();
+                        ctx.globalAlpha = 1;
+                    }
+                }
+            }
+        }
+
+        // 绘制套管轮廓
+        function drawSleeveOutline() {
+            const centerX = width / 4;
+            const centerY = height / 4;
+            
+            // 左边线
+            ctx.beginPath();
+            ctx.moveTo(centerX - SLEEVE_RADIUS, centerY - SLEEVE_HEIGHT / 2);
+            ctx.lineTo(centerX - SLEEVE_RADIUS, centerY + SLEEVE_HEIGHT / 2);
+            ctx.strokeStyle = 'rgba(255,255,255,0.1)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+            
+            // 右边线
+            ctx.beginPath();
+            ctx.moveTo(centerX + SLEEVE_RADIUS, centerY - SLEEVE_HEIGHT / 2);
+            ctx.lineTo(centerX + SLEEVE_RADIUS, centerY + SLEEVE_HEIGHT / 2);
+            ctx.stroke();
+            
+            // 顶部椭圆
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY - SLEEVE_HEIGHT / 2, SLEEVE_RADIUS, SLEEVE_RADIUS * 0.3, 0, 0, Math.PI * 2);
+            ctx.stroke();
+            
+            // 底部椭圆
+            ctx.beginPath();
+            ctx.ellipse(centerX, centerY + SLEEVE_HEIGHT / 2, SLEEVE_RADIUS, SLEEVE_RADIUS * 0.3, 0, 0, Math.PI * 2);
+            ctx.stroke();
+        }
+
+        function animate() {
+            const displayWidth = width / 2;
+            const displayHeight = height / 2;
+            
+            // 清空画布
+            ctx.fillStyle = 'rgba(26, 26, 46, 1)';
+            ctx.fillRect(0, 0, displayWidth, displayHeight);
+            
+            const colors = colorSchemes[colorScheme];
+            
+            // 绘制套管轮廓
+            drawSleeveOutline();
+            
+            // 收集所有纱线并按深度排序
+            const allYarns = [];
+            
+            // 右旋纱线（+45°）
+            for (let i = 0; i < YARN_COUNT; i++) {
+                allYarns.push({ index: i, direction: 1, color: colors.right });
+            }
+            
+            // 左旋纱线（-45°）
+            for (let i = 0; i < YARN_COUNT; i++) {
+                allYarns.push({ index: i, direction: -1, color: colors.left });
+            }
+            
+            // 绘制纱线（交错绘制模拟编织效果）
+            for (let ring = 0; ring < 20; ring++) {
+                const yOffset = ring * 20;
+                
+                allYarns.forEach(yarn => {
+                    const pos = getYarnPosition(yarn.index, yOffset, yarn.direction, time);
+                    
+                    // 只绘制前面的纱线段
+                    if (pos.z > -0.3) {
+                        const alpha = 0.4 + (pos.z + 1) * 0.3;
+                        const lineWidth = 2 + (pos.z + 1) * 1.5;
+                        
+                        ctx.beginPath();
+                        ctx.arc(pos.x, pos.y, lineWidth / 2, 0, Math.PI * 2);
+                        ctx.fillStyle = yarn.color;
+                        ctx.globalAlpha = alpha;
+                        ctx.shadowColor = yarn.color;
+                        ctx.shadowBlur = pos.z > 0.5 ? 10 : 0;
+                        ctx.fill();
+                        ctx.shadowBlur = 0;
+                        ctx.globalAlpha = 1;
+                    }
+                });
+            }
+            
+            // 绘制编织纹理交点
+            drawWeavePattern(time);
+            
+            time += 0.016 * speedMultiplier;
+            
+            if (isPlaying) {
+                animationId = requestAnimationFrame(animate);
+            }
+        }
+
+        function toggleAnimation() {
+            isPlaying = !isPlaying;
+            if (isPlaying) {
+                animate();
+            } else {
+                cancelAnimationFrame(animationId);
+            }
+        }
+
+        function changeSpeed(speed) {
+            speedMultiplier = speed;
+        }
+
+        function toggleColor() {
+            colorScheme = (colorScheme + 1) % colorSchemes.length;
+        }
+
+        // 初始化
+        window.addEventListener('resize', resize);
+        resize();
+        animate();
+    </script>
+</body>
+</html>
