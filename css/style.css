@@ -342,24 +342,40 @@ body {
     margin-left: 20px;
     margin-top: 8px;
     padding: 10px 20px;
-    background: linear-gradient(to right, rgba(0,0,0,0.5), rgba(0,0,0,0.3)), url('../images/lang-switch-bg.jpg') right center / cover no-repeat;
+    background: transparent;
     border: none;
     border-radius: 25px;
     font-size: 12px;
     min-height: 40px;
-    box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+    position: relative;
+    overflow: hidden;
+}
+
+.lang-switch::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: url('../images/lang-switch-bg.jpg') center center / cover no-repeat;
+    opacity: 0.7;
+    border-radius: 25px;
+    z-index: 0;
 }
 
 .lang-switch a {
-    color: rgba(255, 255, 255, 0.8);
+    color: #ffffff;
     text-decoration: none;
-    transition: var(--transition);
+    transition: all 0.3s ease;
     padding: 0 4px;
-    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
 }
 
 .lang-switch a:hover {
-    color: #fff;
+    color: #ffcc99;
 }
 
 .lang-switch a.active {
