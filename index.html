@@ -508,12 +508,38 @@
     </section>
 
     <!-- Factory Section -->
-    <section id="factory" class="factory section">
-        <div class="container">
-            <h2 class="section-title">工厂展示 <span>Factory</span></h2>
-            <div style="text-align:center;">
-                <img src="images/factory-collage.jpg" alt="工厂生产" style="width:100%;max-width:900px;border-radius:16px;box-shadow:0 10px 40px rgba(0,0,0,0.5);">
-                <p style="margin-top:20px;color:#888;font-size:14px;">生产线 & 仓储 · 现代化生产基地</p>
+    <section id="factory" class="factory section" style="padding: 0; position: relative; overflow: hidden;">
+        <!-- 全屏背景：生产线并排平铺 -->
+        <div style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; display: flex; flex-wrap: wrap; overflow: hidden;">
+            <div style="flex: 1; min-width: 300px; background: url('images/factory-production-line.jpg') center center / cover no-repeat;"></div>
+            <div style="flex: 1; min-width: 300px; background: url('images/factory-production-line.jpg') center center / cover no-repeat;"></div>
+            <div style="flex: 1; min-width: 300px; background: url('images/factory-production-line.jpg') center center / cover no-repeat;"></div>
+            <div style="flex: 1; min-width: 300px; background: url('images/factory-production-line.jpg') center center / cover no-repeat;"></div>
+        </div>
+        <!-- 渐变遮罩 + 内容 -->
+        <div style="position: relative; z-index: 1; background: linear-gradient(to bottom, rgba(15,15,20,0.85) 0%, rgba(15,15,20,0.7) 50%, rgba(15,15,20,0.85) 100%); padding: 80px 0;">
+            <div class="container">
+                <h2 class="section-title">工厂展示 <span>Factory</span></h2>
+                <div style="text-align: center; margin-top: 40px;">
+                    <div style="display: inline-flex; gap: 40px; flex-wrap: wrap; justify-content: center;">
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ff6b2c;">100+</div>
+                            <div style="font-size: 16px; color: #ccc;">台编织机</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ff6b2c;">5000㎡</div>
+                            <div style="font-size: 16px; color: #ccc;">生产车间</div>
+                        </div>
+                        <div style="text-align: center;">
+                            <div style="font-size: 48px; font-weight: 800; color: #ff6b2c;">24H</div>
+                            <div style="font-size: 16px; color: #ccc;">全天候生产</div>
+                        </div>
+                    </div>
+                    <p style="margin-top: 30px; color: #aaa; font-size: 16px; line-height: 1.8;">
+                        现代化编织生产线 · 自动化制造 · 精细化管理<br>
+                        <span style="color: #888; font-size: 14px;">Foshan YC Insulation Material Factory · Since 2008</span>
+                    </p>
+                </div>
             </div>
         </div>
     </section>
