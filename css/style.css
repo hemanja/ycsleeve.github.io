@@ -344,6 +344,7 @@ body {
     gap: 2px;
     margin-left: auto;
     margin-right: 0;
+    margin-top: 15px;
     margin-bottom: 2px;
     padding: 5px 12px;
     background: rgba(255, 107, 44, 0.1);
