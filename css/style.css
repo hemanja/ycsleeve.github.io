@@ -358,7 +358,7 @@ body {
     left: 0;
     right: 0;
     bottom: 0;
-    background: url('../images/lang-switch-bg.jpg') center center / cover no-repeat;
+    background: url('../images/lang-switch-bg.jpg') center center / auto 100% no-repeat;
     opacity: 0.7;
     border-radius: 25px;
     z-index: 0;
@@ -388,13 +388,13 @@ body {
     position: absolute;
     top: 0;
     right: 0;
-    width: 500px;
+    width: 400px;
     height: 100%;
-    background: url('../images/lang-switch-bg.jpg') center center / cover no-repeat;
-    opacity: 0.5;
+    background: url('../images/lang-switch-bg.jpg') center center / auto 60px no-repeat;
+    opacity: 0.6;
     z-index: -1;
     animation: slideFromRight 3s ease-out forwards;
-    border-radius: 0 0 0 50px;
+    background-position-x: right;
 }
 
 @keyframes slideFromRight {
@@ -403,11 +403,11 @@ body {
         opacity: 0;
     }
     50% {
-        opacity: 0.6;
+        opacity: 0.7;
     }
     100% {
         transform: translateX(0);
-        opacity: 0.5;
+        opacity: 0.6;
     }
 }
 
