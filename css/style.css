@@ -344,7 +344,7 @@ body {
     gap: 2px;
     margin-left: auto;
     margin-right: 0;
-    margin-top: 15px;
+    margin-top: 30px;
     margin-bottom: 2px;
     padding: 5px 12px;
     background: rgba(255, 107, 44, 0.1);
@@ -377,7 +377,7 @@ body {
     right: 0;
     width: 1200px;
     height: 75px;
-    background: url('../images/lang-switch-bg.jpg') center center / auto 75px no-repeat;
+    background: url('../images/lang-switch-bg.png') center center / auto 75px no-repeat;
     opacity: 0.6;
     z-index: -1;
     animation: slideFromRight 3s ease-out forwards;
