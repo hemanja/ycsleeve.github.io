@@ -344,9 +344,9 @@ body {
     gap: 2px;
     margin-left: auto;
     margin-right: 0;
-    margin-top: 30px;
+    margin-top: 40px;
     margin-bottom: 0;
-    padding: 5px 12px;
+    padding: 3px 12px;
     background: rgba(255, 107, 44, 0.1);
     border: 1px solid rgba(255, 107, 44, 0.2);
     border-radius: 12px;
@@ -375,7 +375,7 @@ body {
     position: absolute;
     top: 10px;
     right: 0;
-    width: 1200px;
+    width: 1150px;
     height: 75px;
     background: url('../images/lang-switch-bg.png') center center / auto 75px no-repeat;
     opacity: 0.6;
