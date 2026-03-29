@@ -341,22 +341,28 @@ body {
 .lang-switch {
     margin-left: 20px;
     margin-top: 8px;
-    padding: 8px 16px;
-    background: rgba(255, 107, 44, 0.1);
-    border: 1px solid rgba(255, 107, 44, 0.2);
-    border-radius: 20px;
+    padding: 10px 20px;
+    background: linear-gradient(to right, rgba(0,0,0,0.6), rgba(0,0,0,0.7)), url('../images/lang-switch-bg.jpg') center center / cover no-repeat;
+    border: 1px solid rgba(255, 107, 44, 0.3);
+    border-radius: 25px;
     font-size: 12px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
 }
 
 .lang-switch a {
-    color: var(--text-muted);
+    color: rgba(255, 255, 255, 0.8);
     text-decoration: none;
     transition: var(--transition);
     padding: 0 4px;
+    text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+}
+
+.lang-switch a:hover {
+    color: #fff;
 }
 
 .lang-switch a.active {
-    color: var(--accent);
+    color: #ff6b2c;
     font-weight: 600;
 }
 
