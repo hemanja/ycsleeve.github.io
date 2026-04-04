@@ -159,6 +159,108 @@
         .tech-specs p {
             color: #333;
         }
+        
+        /* ========== 移动端响应式优化 ========== */
+        @media screen and (max-width: 768px) {
+            /* 表格容器横向滚动 */
+            .table-container {
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+            }
+            .spec-table {
+                min-width: 500px;
+                font-size: 13px;
+            }
+            .spec-table th, .spec-table td {
+                padding: 8px 6px;
+            }
+            
+            /* 产品主图 */
+            .product-gallery {
+                margin-bottom: 20px;
+            }
+            .main-image img {
+                width: 100%;
+                height: auto;
+            }
+            
+            /* 产品信息 */
+            .product-content h1 {
+                font-size: 24px;
+            }
+            .product-content h2 {
+                font-size: 16px;
+            }
+            .product-tags {
+                flex-wrap: wrap;
+            }
+            .tag {
+                font-size: 12px;
+                margin: 3px;
+            }
+            
+            /* 特性卡片 */
+            .feature-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 12px;
+            }
+            .feature-item {
+                padding: 15px 10px;
+            }
+            .feature-item .icon {
+                font-size: 28px;
+            }
+            .feature-item h4 {
+                font-size: 14px;
+            }
+            .feature-item p {
+                font-size: 12px;
+            }
+            
+            /* 应用卡片 */
+            .application-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            .application-item {
+                padding: 10px 12px;
+                font-size: 13px;
+            }
+            
+            /* 标题 */
+            .section-title {
+                font-size: 22px;
+            }
+            .section-title span {
+                font-size: 14px;
+            }
+            
+            /* 提示框 */
+            .size-note {
+                padding: 12px 15px;
+                font-size: 13px;
+            }
+            
+            /* 产品亮点 */
+            .product-highlights ul li {
+                font-size: 14px;
+            }
+        }
+        
+        @media screen and (max-width: 480px) {
+            .feature-grid {
+                grid-template-columns: 1fr 1fr;
+                gap: 10px;
+            }
+            .application-grid {
+                grid-template-columns: 1fr;
+            }
+            .spec-table {
+                min-width: 400px;
+                font-size: 12px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -279,6 +381,7 @@
             </div>
 
             <h3 style="margin-top: 40px;">详细性能参数</h3>
+            <div class="table-container">
             <table class="spec-table">
                 <thead>
                     <tr>
@@ -340,6 +443,7 @@
                     </tr>
                 </tbody>
             </table>
+            </div>
         </div>
     </section>
 
@@ -353,6 +457,7 @@
             </div>
 
             <h3>600V PVC套管规格表</h3>
+            <div class="table-container">
             <table class="spec-table">
                 <thead>
                     <tr>
@@ -390,6 +495,7 @@
                     <tr><td>16.0</td><td>16.0±0.25</td><td>0.60</td><td>±0.10</td></tr>
                 </tbody>
             </table>
+            </div>
 
             <div class="size-note" style="margin-top: 20px;">
                 <strong>标准颜色：</strong>黑色、白色<br>
