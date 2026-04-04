@@ -134,18 +134,29 @@
             margin-right: 10px;
         }
         .section h2 {
-            color: #333;
+            color: var(--text-primary);
         }
         .section h3 {
+            color: var(--text-primary);
+        }
+        /* 浅色背景section的字体颜色 */
+        .section.light-bg p,
+        .section.light-bg li {
             color: #333;
         }
-        .section p {
+        .section.light-bg h3 {
             color: #333;
         }
-        .section ul {
+        /* 技术参数部分 - 浅色背景需要深色字体 */
+        .tech-specs {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        .tech-specs h2,
+        .tech-specs h3 {
             color: #333;
         }
-        .section li {
+        .tech-specs p {
             color: #333;
         }
     </style>
@@ -233,9 +244,9 @@
     </section>
 
     <!-- 特性参数 -->
-    <section class="section">
+    <section class="section light-bg">
         <div class="container">
-            <h2 class="section-title">技术参数 <span>Specifications</span></h2>
+            <h2 class="section-title" style="color: #333;">技术参数 <span style="color: #666;">Specifications</span></h2>
             
             <div class="feature-grid">
                 <div class="feature-item">
@@ -336,9 +347,9 @@
     </section>
 
     <!-- 尺寸规格 -->
-    <section class="section" style="background: #f8f9fa;">
+    <section class="section light-bg" style="background: #f8f9fa;">
         <div class="container">
-            <h2 class="section-title">尺寸规格 <span>Standard Sizes</span></h2>
+            <h2 class="section-title" style="color: #333;">尺寸规格 <span style="color: #666;">Standard Sizes</span></h2>
             
             <div class="size-note">
                 <strong>可接受特殊规格产品订单</strong> — 其他尺寸可根据客户需求定制，欢迎咨询！
@@ -391,48 +402,48 @@
     </section>
 
     <!-- 应用领域 -->
-    <section class="section">
+    <section class="section" style="background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);">
         <div class="container">
-            <h2 class="section-title">应用领域 <span>Applications</span></h2>
+            <h2 class="section-title" style="color: #fff;">应用领域 <span style="color: #ccc;">Applications</span></h2>
             
             <div class="application-grid">
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-cog"></i>
                     <span>电机绕组绝缘</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-car-battery"></i>
                     <span>变压器绝缘</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-tv"></i>
                     <span>家用电器线束</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-lightbulb"></i>
                     <span>灯具绝缘保护</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-plug"></i>
                     <span>电源线保护</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-car"></i>
                     <span>汽车线束</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-bolt"></i>
                     <span>电子元器件</span>
                 </div>
-                <div class="application-item">
+                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
                     <i class="fas fa-industry"></i>
                     <span>工业设备绝缘</span>
                 </div>
             </div>
 
-            <div class="product-description" style="margin-top: 30px;">
-                <p><strong>典型应用场景：</strong></p>
-                <ul style="margin-top: 15px; line-height: 2;">
+            <div class="product-description" style="margin-top: 30px; color: #ccc;">
+                <p style="color: #ccc;"><strong style="color: #fff;">典型应用场景：</strong></p>
+                <ul style="margin-top: 15px; line-height: 2; color: #ccc;">
                     <li>• 电机绕组端部绝缘保护，防止短路</li>
                     <li>• 变压器线圈层间绝缘</li>
                     <li>• 家用电器内部线束集束保护</li>
@@ -444,9 +455,9 @@
     </section>
 
     <!-- 环保认证 -->
-    <section class="section" style="background: #f8f9fa;">
+    <section class="section light-bg" style="background: #f8f9fa;">
         <div class="container">
-            <h2 class="section-title">环保认证 <span>Certifications</span></h2>
+            <h2 class="section-title" style="color: #333;">环保认证 <span style="color: #666;">Certifications</span></h2>
             
             <div class="feature-grid">
                 <div class="feature-item">
