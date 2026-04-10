@@ -101,18 +101,22 @@
             align-items: center;
             justify-content: center;
             gap: 8px;
-            padding: 12px 15px;
-            background: #fff;
-            border-radius: 8px;
-            border: 1px solid #eee;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            border-radius: 25px;
+            border: none;
             transition: all 0.3s ease;
         }
         .application-item:hover {
-            border-color: #ff6b2c;
-            box-shadow: 0 3px 10px rgba(255, 107, 44, 0.15);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 44, 0.3);
         }
         .application-item i {
-            color: #ff6b2c;
+            color: #fff;
+        }
+        .application-item span {
+            color: #fff;
+            font-weight: 500;
         }
         
         /* 手机端响应式 */
