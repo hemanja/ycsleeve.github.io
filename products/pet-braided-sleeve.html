@@ -86,24 +86,41 @@
             font-size: 14px;
         }
         
-        /* 应用网格 */
+        /* 应用网格 - 每行5个，两行均匀分布 */
         .application-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 12px;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
             margin: 25px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .application-item {
             display: flex;
             align-items: center;
+            justify-content: center;
             gap: 8px;
-            padding: 10px 12px;
+            padding: 12px 15px;
             background: #fff;
             border-radius: 8px;
             border: 1px solid #eee;
+            transition: all 0.3s ease;
+        }
+        .application-item:hover {
+            border-color: #ff6b2c;
+            box-shadow: 0 3px 10px rgba(255, 107, 44, 0.15);
         }
         .application-item i {
             color: #ff6b2c;
+        }
+        
+        /* 手机端响应式 */
+        @media (max-width: 768px) {
+            .application-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
         
         /* 图片展示区 */
