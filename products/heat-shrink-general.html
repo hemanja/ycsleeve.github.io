@@ -3,58 +3,167 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>通用型热缩管 - YC INSULATION 佛山盈灿绝缘材料</title>
+    
+    <!-- SEO Meta Tags -->
+    <title>通用型热缩管 K-135/K-102 | 聚烯烃热收缩套管 - YC INSULATION</title>
+    <meta name="description" content="YC INSULATION专业生产通用型热缩管，K-135耐温135°C，K-102耐温105°C。2:1/3:1收缩比，阻燃VW-1，抗紫外线。广泛用于电线束、线束绝缘保护、标识。">
+    <meta name="keywords" content="热缩管,通用型热缩管,K-135,K-102,聚烯烃热缩管,2:1收缩比,3:1收缩比,阻燃VW-1">
+    
+    <link rel="canonical" href="https://ycsleeve.com/products/heat-shrink-general.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="通用型热缩管 K-135/K-102 | 聚烯烃热收缩套管 - YC INSULATION">
+    <meta property="og:description" content="K-135耐温135°C，K-102耐温105°C，2:1/3:1收缩比，阻燃VW-1，抗紫外线">
+    <meta property="og:url" content="https://ycsleeve.com/products/heat-shrink-general.html">
+    <meta property="og:type" content="product">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
     <style>
-        .tech-table {
+        /* 产品规格表样式 */
+        .product-content .product-specs table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
-            background: rgba(255,255,255,0.05);
+            margin-top: 15px;
         }
-        .tech-table th {
-            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
-            color: white;
-            padding: 15px;
-            text-align: left;
+        .product-content .product-specs table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
         }
-        .tech-table td {
-            padding: 12px 15px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+        .product-content .product-specs table td:first-child {
+            font-weight: 600;
+            color: #666;
+            width: 40%;
         }
-        .tech-table tr:hover {
-            background: rgba(255, 107, 44, 0.1);
+        .product-content .product-specs table td:last-child {
+            color: #333;
         }
-        .model-tabs {
+        .product-tags {
             display: flex;
             gap: 10px;
-            margin-bottom: 30px;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
-        .model-tab {
-            padding: 15px 30px;
-            background: rgba(255,255,255,0.05);
-            border: 2px solid rgba(255, 107, 44, 0.3);
-            border-radius: 10px;
-            cursor: pointer;
-            transition: all 0.3s;
-            color: #999;
-        }
-        .model-tab.active {
+        .tag {
             background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
             color: white;
-            border-color: #ff6b2c;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
         }
-        .model-content {
-            display: none;
+        
+        /* 特性卡片 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
         }
-        .model-content.active {
-            display: block;
+        .feature-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .feature-item .icon {
+            font-size: 36px;
+            color: #ff6b2c;
+            margin-bottom: 15px;
+        }
+        .feature-item h4 {
+            margin: 10px 0;
+            color: #333;
+        }
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        /* 应用网格 - 每行5个，两行均匀分布 */
+        .application-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .application-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            border-radius: 25px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .application-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 44, 0.3);
+        }
+        .application-item i {
+            color: #fff;
+        }
+        .application-item span {
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        /* 手机端响应式 */
+        @media (max-width: 768px) {
+            .application-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        
+        /* 图片展示区 */
+        .image-showcase {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .image-showcase img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .image-showcase p {
+            color: #888;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        /* 浅色背景section */
+        .section.light-bg {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        .section.light-bg h2 {
+            color: #333;
+        }
+        .section.light-bg h3 {
+            color: #333;
+        }
+        .section.light-bg p {
+            color: #555;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
@@ -64,287 +173,242 @@
             <nav class="nav">
                 <ul>
                     <li><a href="../index.html">首页</a></li>
+                    <li><a href="../index.html#about">关于我们</a></li>
                     <li><a href="../index.html#products" class="active">产品中心</a></li>
+                    <li><a href="../index.html#factory">工厂展示</a></li>
                     <li><a href="../index.html#contact">联系我们</a></li>
                 </ul>
             </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">首页</a> &gt; 
+            <a href="../index.html#products">产品中心</a> &gt; 
+            <span>通用型热缩管</span>
+        </div>
+    </div>
+
+    <!-- Product Main Info -->
     <section class="product-detail section">
         <div class="container">
-            <div class="breadcrumb">
-                <a href="../index.html">首页</a> / <a href="heat-shrink-series.html">热缩管系列</a> / <span>通用型热缩管</span>
-            </div>
-            
-            <div class="section-header">
-                <h2 class="section-title">通用型热缩管</h2>
-                <p class="section-subtitle">GENERAL PURPOSE HEAT SHRINK TUBE</p>
-            </div>
-            
-            <div class="model-tabs">
-                <div class="model-tab active" onclick="switchModel('k135')">K-135</div>
-                <div class="model-tab" onclick="switchModel('k102')">K-102</div>
-            </div>
-            
-            <!-- K-135 内容 -->
-            <div id="k135" class="model-content active">
-                <!-- 应用场景图片 -->
-                <div style="margin-bottom: 40px;">
-                    <img src="../images/scenes/scene-general.png" alt="通用型热缩管应用场景" style="width: 100%; border-radius: 15px; box-shadow: 0 10px 30px rgba(0,0,0,0.3);">
-                    <p style="text-align: center; margin-top: 15px; color: #999; font-size: 14px;">应用场景：电线束绝缘保护、线束标识</p>
+            <div class="product-main">
+                <!-- 产品图片 -->
+                <div class="product-gallery">
+                    <div class="main-image">
+                        <img src="../images/heat-shrink-woer.jpg" alt="通用型热缩管">
+                    </div>
+                    <div class="product-thumbnails">
+                        <img src="../images/heat-shrink-woer.jpg" alt="热缩管细节" class="thumbnail">
+                        <img src="../images/heat-shrink-woer.jpg" alt="热缩管应用" class="thumbnail">
+                    </div>
                 </div>
                 
-                <div class="product-main">
-                    <div class="product-gallery">
-                        <div class="main-image">
-                            <img src="../images/heat-shrink-woer.jpg" alt="K-135 热缩管">
-                        </div>
+                <!-- 产品信息 -->
+                <div class="product-content">
+                    <h1>通用型热缩管</h1>
+                    <h2>General Purpose Heat Shrink Tube</h2>
+                    
+                    <div class="product-tags">
+                        <span class="tag">2:1 / 3:1 收缩比</span>
+                        <span class="tag">阻燃 VW-1</span>
+                        <span class="tag">抗紫外线</span>
+                        <span class="tag">RoHS</span>
                     </div>
                     
-                    <div class="product-content">
-                        <h1>K-135 热缩管</h1>
-                        <h2>耐温135°C 柔软聚烯烃热收缩套管</h2>
-                        
-                        <div class="product-tags">
-                            <span class="tag">2:1 / 3:1 收缩比</span>
-                            <span class="tag">阻燃 VW-1</span>
-                            <span class="tag">抗紫外线</span>
-                            <span class="tag">RoHS</span>
-                        </div>
-                        
-                        <div class="product-description">
-                            <p>K-135是一种高品质的聚烯烃热收缩管，由辐射交联低密度聚乙烯和优质添加剂制成。具有优良的电气、物理及化学性能，广泛用于工业和军事领域，适用于电线束、轻型线束绝缘保护、标识等。</p>
-                        </div>
-                        
-                        <div class="product-specs">
-                            <h3><i class="fas fa-thermometer-half"></i> 操作温度范围</h3>
-                            <table>
-                                <tr><td>连续使用温度</td><td>-55°C ~ +135°C</td></tr>
-                                <tr><td>最低收缩温度</td><td>70°C</td></tr>
-                                <tr><td>完全恢复温度</td><td>120°C</td></tr>
-                            </table>
-                        </div>
-                        
-                        <div class="product-specs">
-                            <h3><i class="fas fa-star"></i> 产品特性</h3>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 收缩比 2:1, 3:1</li>
-                                <li><i class="fas fa-check"></i> 优异的电气性能、物理性能和化学性能</li>
-                                <li><i class="fas fa-check"></i> 柔韧、阻燃</li>
-                                <li><i class="fas fa-check"></i> 抗紫外线、耐UV和耐候性</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="product-cta">
-                            <a href="https://wa.me/8613590605550" class="btn btn-whatsapp" target="_blank">
-                                <i class="fab fa-whatsapp"></i> WhatsApp咨询
-                            </a>
-                            <a href="mailto:heman508@gmail.com" class="btn btn-primary">
-                                <i class="fas fa-envelope"></i> 邮件询价
-                            </a>
-                        </div>
+                    <div class="product-description">
+                        <p>通用型热缩管是一种高品质的聚烯烃热收缩管，由辐射交联低密度聚乙烯和优质添加剂制成。具有优良的电气、物理及化学性能，广泛用于工业和军事领域，适用于电线束、轻型线束绝缘保护、标识等。</p>
                     </div>
-                </div>
-                
-                <div class="product-specs" style="margin-top: 40px;">
-                    <h3><i class="fas fa-flask"></i> 性能指标</h3>
-                    <table class="tech-table">
-                        <thead>
-                            <tr>
-                                <th>测试项目</th>
-                                <th>要求</th>
-                                <th>测试方法</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>纵向收缩率</td>
-                                <td>≤10%</td>
-                                <td>ASTM D 2671</td>
-                            </tr>
-                            <tr>
-                                <td>拉伸强度</td>
-                                <td>≥10.4 MPa</td>
-                                <td>ASTM D 638</td>
-                            </tr>
-                            <tr>
-                                <td>断裂伸长率</td>
-                                <td>≥200%</td>
-                                <td>ASTM D 638</td>
-                            </tr>
-                            <tr>
-                                <td>老化后拉伸强度 (135°C, 168hrs)</td>
-                                <td>100% min</td>
-                                <td>ASTM D 638</td>
-                            </tr>
-                            <tr>
-                                <td>热冲击 (250°C, 4Hrs)</td>
-                                <td>无裂纹</td>
-                                <td>ASTM D 2671</td>
-                            </tr>
-                            <tr>
-                                <td>低温脆性 (-55°C, 4Hrs)</td>
-                                <td>无破裂</td>
-                                <td>ASTM D 2671</td>
-                            </tr>
-                            <tr>
-                                <td>击穿电压</td>
-                                <td>2500V/min 不击穿</td>
-                                <td>ASTM D 2671</td>
-                            </tr>
-                            <tr>
-                                <td>体积电阻率</td>
-                                <td>≥1×10¹⁴ Ω·cm</td>
-                                <td>ASTM D 257</td>
-                            </tr>
-                            <tr>
-                                <td>铜腐蚀</td>
-                                <td>无腐蚀</td>
-                                <td>ASTM D 2671</td>
-                            </tr>
-                            <tr>
-                                <td>阻燃性</td>
-                                <td>VW-1</td>
-                                <td>UL224</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="product-specs" style="margin-top: 40px;">
-                    <h3><i class="fas fa-ruler"></i> 规格尺寸 (2:1 收缩比)</h3>
-                    <div style="overflow-x: auto;">
-                        <table class="tech-table">
-                            <thead>
-                                <tr>
-                                    <th>规格</th>
-                                    <th>收缩前外径 (mm)</th>
-                                    <th>收缩后内径 (mm)</th>
-                                    <th>壁厚 (mm)</th>
-                                    <th>标准长度 (m)</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr><td>Φ0.5</td><td>1.6</td><td>0.25</td><td>0.4±0.08</td><td>200</td></tr>
-                                <tr><td>Φ0.8</td><td>2.4</td><td>0.4</td><td>0.4±0.08</td><td>200</td></tr>
-                                <tr><td>Φ1.2</td><td>3.2</td><td>0.6</td><td>0.4±0.08</td><td>200</td></tr>
-                                <tr><td>Φ1.6</td><td>4.0</td><td>0.8</td><td>0.5±0.08</td><td>200</td></tr>
-                                <tr><td>Φ2.4</td><td>4.8</td><td>1.2</td><td>0.5±0.08</td><td>200</td></tr>
-                                <tr><td>Φ3.2</td><td>6.4</td><td>1.6</td><td>0.6±0.08</td><td>100</td></tr>
-                                <tr><td>Φ4.8</td><td>9.6</td><td>2.4</td><td>0.6±0.08</td><td>100</td></tr>
-                                <tr><td>Φ6.4</td><td>12.8</td><td>3.2</td><td>0.6±0.08</td><td>100</td></tr>
-                                <tr><td>Φ9.5</td><td>19.1</td><td>4.8</td><td>0.78±0.08</td><td>50</td></tr>
-                                <tr><td>Φ12.7</td><td>25.4</td><td>6.4</td><td>0.89±0.12</td><td>50</td></tr>
-                                <tr><td>Φ19.1</td><td>38.1</td><td>9.5</td><td>1.02±0.15</td><td>50</td></tr>
-                                <tr><td>Φ25.4</td><td>50.8</td><td>12.7</td><td>1.14±0.18</td><td>50</td></tr>
-                            </tbody>
+                    
+                    <div class="product-specs">
+                        <h3>产品规格</h3>
+                        <table>
+                            <tr><td>型号</td><td>K-135 (耐温135°C) / K-102 (耐温105°C)</td></tr>
+                            <tr><td>收缩比</td><td>2:1, 3:1</td></tr>
+                            <tr><td>连续使用温度</td><td>-55°C ~ +135°C (K-135)</td></tr>
+                            <tr><td>最低收缩温度</td><td>70°C</td></tr>
+                            <tr><td>完全恢复温度</td><td>120°C</td></tr>
+                            <tr><td>阻燃等级</td><td>VW-1</td></tr>
+                            <tr><td>认证标准</td><td>UL224 / SAE AMS-DTL-23053/5 / RoHS</td></tr>
                         </table>
                     </div>
-                    <p style="margin-top: 15px; color: #999; font-size: 14px;">* 其他规格尺寸可订制</p>
-                </div>
-                
-                <div class="product-specs" style="margin-top: 40px;">
-                    <h3><i class="fas fa-palette"></i> 颜色选项</h3>
-                    <p>标准颜色：黑、白、红、黄、蓝、绿、灰、透明</p>
-                    <p style="color: #999; font-size: 14px; margin-top: 10px;">其他颜色可根据客户需求定制</p>
-                </div>
-                
-                <div class="product-specs" style="margin-top: 40px;">
-                    <h3><i class="fas fa-certificate"></i> 认证标准</h3>
-                    <div class="product-tags" style="margin-top: 15px;">
-                        <span class="tag">UL224 VW-1</span>
-                        <span class="tag">SAE AMS-DTL-23053/5</span>
-                        <span class="tag">RoHS</span>
-                        <span class="tag">REACH</span>
-                        <span class="tag">CSA</span>
-                        <span class="tag">CE</span>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- K-102 内容 -->
-            <div id="k102" class="model-content">
-                <div class="product-main">
-                    <div class="product-gallery">
-                        <div class="main-image">
-                            <img src="../images/heat-shrink-woer.jpg" alt="K-102 热缩管">
-                        </div>
-                    </div>
                     
-                    <div class="product-content">
-                        <h1>K-102 热缩管</h1>
-                        <h2>耐温105°C 经济型聚烯烃热收缩套管</h2>
-                        
-                        <div class="product-tags">
-                            <span class="tag">2:1 收缩比</span>
-                            <span class="tag">经济实用</span>
-                            <span class="tag">RoHS</span>
-                        </div>
-                        
-                        <div class="product-description">
-                            <p>K-102是一种经济型聚烯烃热收缩管，适用于一般电气绝缘和机械保护。具有良好的电气性能和物理性能，性价比高，广泛用于民用电器、照明、线束等领域。</p>
-                        </div>
-                        
-                        <div class="product-specs">
-                            <h3><i class="fas fa-thermometer-half"></i> 操作温度范围</h3>
-                            <table>
-                                <tr><td>连续使用温度</td><td>-55°C ~ +105°C</td></tr>
-                                <tr><td>最低收缩温度</td><td>70°C</td></tr>
-                                <tr><td>完全恢复温度</td><td>100°C</td></tr>
-                            </table>
-                        </div>
-                        
-                        <div class="product-specs">
-                            <h3><i class="fas fa-star"></i> 产品特性</h3>
-                            <ul>
-                                <li><i class="fas fa-check"></i> 收缩比 2:1</li>
-                                <li><i class="fas fa-check"></i> 经济实用，性价比高</li>
-                                <li><i class="fas fa-check"></i> 良好的电气性能</li>
-                                <li><i class="fas fa-check"></i> 柔软易操作</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="product-cta">
-                            <a href="https://wa.me/8613590605550" class="btn btn-whatsapp" target="_blank">
-                                <i class="fab fa-whatsapp"></i> WhatsApp咨询
-                            </a>
-                            <a href="mailto:heman508@gmail.com" class="btn btn-primary">
-                                <i class="fas fa-envelope"></i> 邮件询价
-                            </a>
-                        </div>
+                    <div class="product-contact" style="margin-top: 25px;">
+                        <a href="https://wa.me/8613590605550" class="btn btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 立即询价
+                        </a>
+                        <a href="mailto:heman508@gmail.com" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i> 发送邮件
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 产品特点 -->
+    <section class="section light-bg">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">产品特点 <span style="color: #666;">Features</span></h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="icon">🌡️</div>
+                    <h4>宽温范围</h4>
+                    <p>-55°C ~ +135°C工作温度</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔄</div>
+                    <h4>高收缩比</h4>
+                    <p>2:1 / 3:1收缩比可选</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔥</div>
+                    <h4>阻燃性能</h4>
+                    <p>VW-1阻燃等级</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">☀️</div>
+                    <h4>抗紫外线</h4>
+                    <p>耐UV和耐候性</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <h4>电气性能</h4>
+                    <p>优异的绝缘性能</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">✅</div>
+                    <h4>多重认证</h4>
+                    <p>UL/CSA/CE/RoHS认证</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品细节图 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">产品细节 <span>Details</span></h2>
+            
+            <div class="image-showcase">
+                <img src="../images/scenes/scene-general.png" alt="通用型热缩管应用场景">
+                <p>应用场景 · 电线束绝缘保护、线束标识</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用领域 -->
+    <section class="section light-bg">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">应用领域 <span style="color: #666;">Applications</span></h2>
+            
+            <p style="text-align: center; color: #555; margin-bottom: 25px;">通用型热缩管广泛应用在以下领域：</p>
+            
+            <div class="application-grid">
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电线束</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>线束保护</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>线束标识</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>工业设备</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>军事领域</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>汽车电子</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>家电产品</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电子产品</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>通讯设备</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电气绝缘</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">联系我们 <span>Contact</span></h2>
+            <p style="text-align: center; color: #888; margin-bottom: 30px;">需要定制或询价？我们提供免费样品测试，欢迎联系我们获取详细报价</p>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/8613590605550" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp咨询
+                </a>
+                <a href="tel:+8613590605550" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> +86 135 9060 5550
+                </a>
+                <a href="mailto:heman508@gmail.com" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> heman508@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>YC INSULATION</h2>
+                    <p>佛山盈灿绝缘材料有限公司</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="../index.html#about">关于我们</a></li>
+                        <li><a href="../index.html#products">产品中心</a></li>
+                        <li><a href="../index.html#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>联系方式</h4>
+                    <p><i class="fas fa-phone"></i> +86 135 9060 5550</p>
+                    <p><i class="fas fa-envelope"></i> heman508@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +86 135 9060 5550</p>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 YC INSULATION. 佛山盈灿绝缘材料 版权所有</p>
+                <p>&copy; 2024-2026 YC INSULATION. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/8613590605550" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
-    
-    <script>
-    function switchModel(model) {
-        // 切换标签样式
-        document.querySelectorAll('.model-tab').forEach(tab => {
-            tab.classList.remove('active');
-        });
-        event.target.classList.add('active');
-        
-        // 切换内容
-        document.querySelectorAll('.model-content').forEach(content => {
-            content.classList.remove('active');
-        });
-        document.getElementById(model).classList.add('active');
-    }
-    </script>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>

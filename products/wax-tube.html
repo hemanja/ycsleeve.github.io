@@ -10,6 +10,13 @@
     <meta name="keywords" content="黄腊管,黄漆布管,经济型绝缘套管,耐温105°C,耐压1000V,电机绕组绝缘,变压器绝缘,YC INSULATION">
     
     <link rel="canonical" href="https://ycsleeve.com/products/wax-tube.html">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="黄腊管 | 经济实惠绝缘套管 - YC INSULATION">
+    <meta property="og:description" content="棉布浸渍绝缘漆制成，耐温-20°C~+105°C，耐压200V-1000V，经济实惠的绝缘解决方案">
+    <meta property="og:url" content="https://ycsleeve.com/products/wax-tube.html">
+    <meta property="og:type" content="product">
+    
     <link rel="stylesheet" href="../css/style.css">
     <link rel="stylesheet" href="../css/products.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -98,75 +105,189 @@
                     "@type": "Answer",
                     "text": "黄腊管适用于电机绕组绝缘、变压器绝缘保护、一般线路保护、电气维修等对耐温要求不高的场合。因其经济实惠，常用于成本敏感项目。"
                 }
-            },
-            {
-                "@type": "Question",
-                "name": "最小起订量是多少？",
-                "acceptedAnswer": {
-                    "@type": "Answer",
-                    "text": "黄腊管最小起订量为500米，低于玻纤管的1000米起订量，更适合小批量需求。"
-                }
             }
         ]
     }
     </script>
     
     <style>
-        .quick-answer {
-            background: linear-gradient(135deg, #1a2a3a 0%, #2d3d4d 100%);
-            border-left: 4px solid #ff6b2c;
-            padding: 25px;
-            margin: 20px 0 40px 0;
-            border-radius: 10px;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+        /* 产品规格表样式 */
+        .product-content .product-specs table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
         }
-        .quick-answer h3 {
+        .product-content .product-specs table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        .product-content .product-specs table td:first-child {
+            font-weight: 600;
+            color: #666;
+            width: 40%;
+        }
+        .product-content .product-specs table td:last-child {
+            color: #333;
+        }
+        .product-tags {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
+        
+        /* 特性卡片 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        .feature-item {
+            text-align: center;
+            padding: 25px 15px;
+            background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
+            border-radius: 12px;
+            border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+        .feature-item .icon {
+            font-size: 36px;
             color: #ff6b2c;
             margin-bottom: 15px;
-            font-size: 18px;
         }
-        .quick-answer ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
+        .feature-item h4 {
+            margin: 10px 0;
+            color: #333;
         }
-        .quick-answer li {
-            color: #e0e0e0;
-            padding: 8px 0;
-            font-size: 15px;
+        .feature-item p {
+            color: #666;
+            font-size: 14px;
         }
-        .quick-answer li i {
-            color: #4ade80;
-            margin-right: 10px;
+        
+        /* 应用网格 - 每行5个，两行均匀分布 */
+        .application-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr);
+            gap: 15px;
+            margin: 25px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
-        .quick-answer strong {
-            color: #ff8c5a;
+        .application-item {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            border-radius: 25px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .application-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 44, 0.3);
+        }
+        .application-item i {
+            color: #fff;
+        }
+        .application-item span {
+            color: #fff;
+            font-weight: 500;
+        }
+        
+        /* 手机端响应式 */
+        @media (max-width: 768px) {
+            .application-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+        }
+        
+        /* 图片展示区 */
+        .image-showcase {
+            text-align: center;
+            margin: 30px 0;
+        }
+        .image-showcase img {
+            max-width: 100%;
+            border-radius: 12px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+        .image-showcase p {
+            color: #888;
+            font-size: 14px;
+            margin-top: 15px;
+        }
+        
+        /* 浅色背景section */
+        .section.light-bg {
+            background: #f8f9fa;
+            padding: 60px 0;
+        }
+        .section.light-bg h2 {
+            color: #333;
+        }
+        .section.light-bg h3 {
+            color: #333;
+        }
+        .section.light-bg p {
+            color: #555;
         }
     </style>
 </head>
 <body>
+    <!-- Header -->
     <header class="header">
         <div class="container">
             <div class="logo">
                 <h1>YC<span>INSULATION</span></h1>
+                <p>佛山盈灿绝缘材料</p>
             </div>
             <nav class="nav">
                 <ul>
                     <li><a href="../index.html">首页</a></li>
+                    <li><a href="../index.html#about">关于我们</a></li>
                     <li><a href="../index.html#products" class="active">产品中心</a></li>
+                    <li><a href="../index.html#factory">工厂展示</a></li>
                     <li><a href="../index.html#contact">联系我们</a></li>
                 </ul>
             </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+        <div class="container">
+            <a href="../index.html">首页</a> &gt; 
+            <a href="../index.html#products">产品中心</a> &gt; 
+            <span>黄腊管</span>
+        </div>
+    </div>
+
+    <!-- Product Main Info -->
     <section class="product-detail section">
         <div class="container">
-            <div class="breadcrumb">
-                <a href="../index.html">首页</a> / <a href="../index.html#products">产品中心</a> / <span>黄腊管</span>
-            </div>
-            
             <div class="product-main">
+                <!-- 产品图片 -->
                 <div class="product-gallery">
                     <div class="main-image">
                         <img src="../images/wax-tube-main.jpg" alt="黄腊管">
@@ -177,6 +298,7 @@
                     </div>
                 </div>
                 
+                <!-- 产品信息 -->
                 <div class="product-content">
                     <h1>黄腊管</h1>
                     <h2>Yellow Wax Tube</h2>
@@ -199,56 +321,188 @@
                             <tr><td>温度范围</td><td>-20°C ~ +105°C</td></tr>
                             <tr><td>颜色</td><td>黄色 / 本色</td></tr>
                             <tr><td>特点</td><td>柔软、易裁剪</td></tr>
+                            <tr><td>最小起订量</td><td>500米</td></tr>
+                            <tr><td>交货期</td><td>5-10天</td></tr>
                         </table>
                     </div>
                     
-                    <div class="product-applications">
-                        <h3>应用领域</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> 电机绕组</li>
-                            <li><i class="fas fa-check"></i> 变压器绝缘</li>
-                            <li><i class="fas fa-check"></i> 一般线路</li>
-                            <li><i class="fas fa-check"></i> 电气维修</li>
-                        </ul>
-                    </div>
-                    
-                    <div class="product-cta">
-                        <a href="https://wa.me/8613590605550" class="btn btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp咨询
+                    <div class="product-contact" style="margin-top: 25px;">
+                        <a href="https://wa.me/8613590605550" class="btn btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 立即询价
                         </a>
-                        <a href="mailto:heman508@gmail.com" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i> 邮件询价
+                        <a href="mailto:heman508@gmail.com" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i> 发送邮件
                         </a>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="product-scenarios">
-                <h3>应用场景</h3>
-                <div class="scenario-grid">
-                    <div class="scenario-item">
-                        <img src="../images/wax-tube-coil.jpg" alt="电机绕组应用">
-                        <p>电机绕组绝缘</p>
-                    </div>
-                    <div class="scenario-item">
-                        <img src="../images/wax-tube-detail.jpg" alt="变压器绝缘">
-                        <p>变压器绝缘保护</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- 产品特点 -->
+    <section class="section light-bg">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">产品特点 <span style="color: #666;">Features</span></h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <div class="icon">💰</div>
+                    <h4>经济实惠</h4>
+                    <p>价格低廉性价比高</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🌿</div>
+                    <h4>柔软易用</h4>
+                    <p>柔软易裁剪易操作</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">⚡</div>
+                    <h4>绝缘性能</h4>
+                    <p>良好的电气绝缘性能</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">🔄</div>
+                    <h4>柔韧性好</h4>
+                    <p>可弯曲适应不同形状</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">✂️</div>
+                    <h4>易裁剪</h4>
+                    <p>可按需求裁剪长度</p>
+                </div>
+                <div class="feature-item">
+                    <div class="icon">📦</div>
+                    <h4>小批量起订</h4>
+                    <p>500米起订适合小需求</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 产品细节图 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">产品细节 <span>Details</span></h2>
+            
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px;">
+                <div class="image-showcase">
+                    <img src="../images/wax-tube-coil.jpg" alt="电机绕组应用">
+                    <p>电机绕组绝缘应用</p>
+                </div>
+                <div class="image-showcase">
+                    <img src="../images/wax-tube-detail.jpg" alt="变压器绝缘">
+                    <p>变压器绝缘保护</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 应用领域 -->
+    <section class="section light-bg">
+        <div class="container">
+            <h2 class="section-title" style="color: #333;">应用领域 <span style="color: #666;">Applications</span></h2>
+            
+            <p style="text-align: center; color: #555; margin-bottom: 25px;">黄腊管广泛应用在以下领域：</p>
+            
+            <div class="application-grid">
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电机绕组</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>变压器绝缘</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>一般线路</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电气维修</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>家用电器</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电器设备</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>线束保护</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>绝缘修复</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电气安装</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>成本低项目</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- 联系我们 -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">联系我们 <span>Contact</span></h2>
+            <p style="text-align: center; color: #888; margin-bottom: 30px;">需要定制或询价？我们提供免费样品测试，欢迎联系我们获取详细报价</p>
+            
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/8613590605550" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp咨询
+                </a>
+                <a href="tel:+8613590605550" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> +86 135 9060 5550
+                </a>
+                <a href="mailto:heman508@gmail.com" class="btn btn-outline">
+                    <i class="fas fa-envelope"></i> heman508@gmail.com
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
+            <div class="footer-content">
+                <div class="footer-brand">
+                    <h2>YC INSULATION</h2>
+                    <p>佛山盈灿绝缘材料有限公司</p>
+                </div>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
+                    <ul>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="../index.html#about">关于我们</a></li>
+                        <li><a href="../index.html#products">产品中心</a></li>
+                        <li><a href="../index.html#contact">联系我们</a></li>
+                    </ul>
+                </div>
+                <div class="footer-contact">
+                    <h4>联系方式</h4>
+                    <p><i class="fas fa-phone"></i> +86 135 9060 5550</p>
+                    <p><i class="fas fa-envelope"></i> heman508@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +86 135 9060 5550</p>
+                </div>
+            </div>
             <div class="footer-bottom">
-                <p>&copy; 2024 YC INSULATION. 佛山盈灿绝缘材料 版权所有</p>
+                <p>&copy; 2024-2026 YC INSULATION. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
+    <!-- WhatsApp Float Button -->
     <a href="https://wa.me/8613590605550" class="whatsapp-float" target="_blank">
         <i class="fab fa-whatsapp"></i>
     </a>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>

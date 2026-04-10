@@ -3,9 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <!-- SEO Meta Tags -->
     <title>PVC套管 | 300V/600V绝缘套管 - YC INSULATION</title>
     <meta name="description" content="YC INSULATION专业生产PVC套管，300V/600V电压等级，耐温105°C，内径1.0-16.5mm可选。符合RoHS环保标准，UL认证。广泛用于电机、变压器、家用电器线束绝缘保护。">
     <meta name="keywords" content="PVC套管,PVC管,绝缘套管,300V套管,600V套管,聚氯乙烯套管,电线保护管">
+    
     <link rel="canonical" href="https://ycsleeve.com/products/pvc-hose.html">
     
     <!-- Open Graph -->
@@ -19,35 +22,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        .spec-table {
+        /* 产品规格表样式 */
+        .product-content .product-specs table {
             width: 100%;
             border-collapse: collapse;
-            margin: 20px 0;
+            margin-top: 15px;
+        }
+        .product-content .product-specs table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
             font-size: 14px;
-            color: #333;
         }
-        .spec-table th, .spec-table td {
-            border: 1px solid #ddd;
-            padding: 10px 12px;
-            text-align: center;
-        }
-        .spec-table th {
-            background: #f8f9fa;
+        .product-content .product-specs table td:first-child {
             font-weight: 600;
+            color: #666;
+            width: 40%;
+        }
+        .product-content .product-specs table td:last-child {
             color: #333;
         }
-        .spec-table tr:nth-child(even) {
-            background: #fafafa;
+        .product-tags {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
         }
-        .spec-table tr:nth-child(even) td {
-            color: #333;
+        .tag {
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
         }
-        .spec-table tr:hover {
-            background: #f0f7ff;
-        }
-        .spec-table tr:hover td {
-            color: #333;
-        }
+        
+        /* 特性卡片 */
         .feature-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -60,6 +69,11 @@
             background: linear-gradient(135deg, #f8f9fa 0%, #fff 100%);
             border-radius: 12px;
             border: 1px solid #eee;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .feature-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
         .feature-item .icon {
             font-size: 36px;
@@ -74,201 +88,77 @@
             color: #666;
             font-size: 14px;
         }
+        
+        /* 应用网格 - 每行5个，两行均匀分布 */
         .application-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(5, 1fr);
             gap: 15px;
             margin: 25px 0;
+            max-width: 900px;
+            margin-left: auto;
+            margin-right: auto;
         }
         .application-item {
             display: flex;
             align-items: center;
-            gap: 10px;
-            padding: 12px 15px;
-            background: #f8f9fa;
-            border-radius: 8px;
+            justify-content: center;
+            gap: 8px;
+            padding: 12px 18px;
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            border-radius: 25px;
+            border: none;
+            transition: all 0.3s ease;
+        }
+        .application-item:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 107, 44, 0.3);
         }
         .application-item i {
-            color: #ff6b2c;
+            color: #fff;
         }
-        .size-note {
-            background: #fff8f0;
-            border-left: 4px solid #ff6b2c;
-            padding: 15px 20px;
-            margin: 20px 0;
-            border-radius: 0 8px 8px 0;
-            color: #333;
+        .application-item span {
+            color: #fff;
+            font-weight: 500;
         }
-        .size-note strong {
-            color: #ff6b2c;
+        
+        /* 手机端响应式 */
+        @media (max-width: 768px) {
+            .application-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
         }
-        .product-description {
-            color: #333;
+        
+        /* 图片展示区 */
+        .image-showcase {
+            text-align: center;
+            margin: 30px 0;
         }
-        .product-description p {
-            color: #333;
-        }
-        .product-highlights {
-            background: #f8f9fa;
-            padding: 20px;
+        .image-showcase img {
+            max-width: 100%;
             border-radius: 12px;
-            margin: 20px 0;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
         }
-        .product-highlights h3 {
-            color: #333;
-            margin-bottom: 15px;
+        .image-showcase p {
+            color: #888;
+            font-size: 14px;
+            margin-top: 15px;
         }
-        .product-highlights ul {
-            list-style: none;
-            padding: 0;
+        
+        /* 浅色背景section */
+        .section.light-bg {
+            background: #f8f9fa;
+            padding: 60px 0;
         }
-        .product-highlights li {
-            color: #333;
-            padding: 8px 0;
-            border-bottom: 1px solid #eee;
-        }
-        .product-highlights li:last-child {
-            border-bottom: none;
-        }
-        .product-highlights i {
-            color: #ff6b2c;
-            margin-right: 10px;
-        }
-        .section h2 {
-            color: var(--text-primary);
-        }
-        .section h3 {
-            color: var(--text-primary);
-        }
-        /* 浅色背景section的字体颜色 */
-        .section.light-bg p,
-        .section.light-bg li {
+        .section.light-bg h2 {
             color: #333;
         }
         .section.light-bg h3 {
             color: #333;
         }
-        /* 技术参数部分 - 浅色背景需要深色字体 */
-        .tech-specs {
-            background: #f8f9fa;
-            padding: 60px 0;
-        }
-        .tech-specs h2,
-        .tech-specs h3 {
-            color: #333;
-        }
-        .tech-specs p {
-            color: #333;
-        }
-        
-        /* ========== 移动端响应式优化 ========== */
-        @media screen and (max-width: 768px) {
-            /* 表格容器横向滚动 */
-            .table-container {
-                width: 100%;
-                overflow-x: auto;
-                -webkit-overflow-scrolling: touch;
-            }
-            .spec-table {
-                min-width: 500px;
-                font-size: 13px;
-            }
-            .spec-table th, .spec-table td {
-                padding: 8px 6px;
-            }
-            
-            /* 产品主图 */
-            .product-gallery {
-                margin-bottom: 20px;
-                width: 100%;
-                max-width: 100%;
-            }
-            .main-image {
-                width: 100%;
-                max-width: 100%;
-            }
-            .main-image img {
-                width: 100%;
-                max-width: 100%;
-                height: auto;
-                display: block;
-            }
-            
-            /* 产品信息 */
-            .product-content h1 {
-                font-size: 24px;
-            }
-            .product-content h2 {
-                font-size: 16px;
-            }
-            .product-tags {
-                flex-wrap: wrap;
-            }
-            .tag {
-                font-size: 12px;
-                margin: 3px;
-            }
-            
-            /* 特性卡片 */
-            .feature-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-            .feature-item {
-                padding: 15px 10px;
-            }
-            .feature-item .icon {
-                font-size: 28px;
-            }
-            .feature-item h4 {
-                font-size: 14px;
-            }
-            .feature-item p {
-                font-size: 12px;
-            }
-            
-            /* 应用卡片 */
-            .application-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 10px;
-            }
-            .application-item {
-                padding: 10px 12px;
-                font-size: 13px;
-            }
-            
-            /* 标题 */
-            .section-title {
-                font-size: 22px;
-            }
-            .section-title span {
-                font-size: 14px;
-            }
-            
-            /* 提示框 */
-            .size-note {
-                padding: 12px 15px;
-                font-size: 13px;
-            }
-            
-            /* 产品亮点 */
-            .product-highlights ul li {
-                font-size: 14px;
-            }
-        }
-        
-        @media screen and (max-width: 480px) {
-            .feature-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            .application-grid {
-                grid-template-columns: 1fr;
-            }
-            .spec-table {
-                min-width: 400px;
-                font-size: 12px;
-            }
+        .section.light-bg p {
+            color: #555;
         }
     </style>
 </head>
@@ -277,40 +167,48 @@
     <header class="header">
         <div class="container">
             <div class="logo">
-                <a href="../index.html">
-                    <span class="logo-text">YC INSULATION</span>
-                    <span class="logo-sub">绝缘套管专家</span>
-                </a>
+                <h1>YC<span>INSULATION</span></h1>
+                <p>佛山盈灿绝缘材料</p>
             </div>
             <nav class="nav">
-                <a href="../index.html">首页</a>
-                <a href="../index.html#products">产品中心</a>
-                <a href="../index.html#about">关于我们</a>
-                <a href="../index.html#contact">联系我们</a>
+                <ul>
+                    <li><a href="../index.html">首页</a></li>
+                    <li><a href="../index.html#about">关于我们</a></li>
+                    <li><a href="../index.html#products" class="active">产品中心</a></li>
+                    <li><a href="../index.html#factory">工厂展示</a></li>
+                    <li><a href="../index.html#contact">联系我们</a></li>
+                </ul>
             </nav>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
         </div>
     </header>
 
     <!-- Breadcrumb -->
-    <section class="breadcrumb">
+    <div class="breadcrumb">
         <div class="container">
             <a href="../index.html">首页</a> &gt; 
             <a href="../index.html#products">产品中心</a> &gt; 
             <span>PVC套管</span>
         </div>
-    </section>
+    </div>
 
-    <!-- Product Main -->
-    <section class="product-detail">
+    <!-- Product Main Info -->
+    <section class="product-detail section">
         <div class="container">
             <div class="product-main">
                 <!-- 产品图片 -->
                 <div class="product-gallery">
                     <div class="main-image">
-                        <img src="../images/pvc-hose-main.jpg" alt="PVC套管" id="mainImage">
+                        <img src="../images/pvc-hose-main.jpg" alt="PVC套管">
+                    </div>
+                    <div class="product-thumbnails">
+                        <img src="../images/pvc-hose-main.jpg" alt="PVC套管细节" class="thumbnail">
+                        <img src="../images/pvc-hose-main.jpg" alt="PVC套管应用" class="thumbnail">
                     </div>
                 </div>
-
+                
                 <!-- 产品信息 -->
                 <div class="product-content">
                     <h1>PVC套管</h1>
@@ -322,28 +220,30 @@
                         <span class="tag">RoHS环保</span>
                         <span class="tag">UL认证</span>
                     </div>
-
+                    
                     <div class="product-description">
                         <p>PVC套管采用优质聚氯乙烯树脂为基材，添加适量环保助剂制成。具有优异的电气绝缘性能、良好的柔韧性和耐化学腐蚀性，是电机、变压器、家用电器线束绝缘保护的理想选择。</p>
                     </div>
-
-                    <div class="product-highlights">
-                        <h3>产品亮点</h3>
-                        <ul>
-                            <li><i class="fas fa-bolt"></i> <strong>电压等级：</strong>300V / 600V 两种规格可选</li>
-                            <li><i class="fas fa-thermometer-half"></i> <strong>耐温等级：</strong>105°C，适用于高温环境</li>
-                            <li><i class="fas fa-shield-alt"></i> <strong>击穿电压：</strong>≥2500V（60秒不击穿）</li>
-                            <li><i class="fas fa-leaf"></i> <strong>环保认证：</strong>符合RoHS标准，无铅无镉</li>
-                            <li><i class="fas fa-palette"></i> <strong>颜色可选：</strong>标准黑色、白色，可定制颜色</li>
-                        </ul>
+                    
+                    <div class="product-specs">
+                        <h3>产品规格</h3>
+                        <table>
+                            <tr><td>电压等级</td><td>300V / 600V</td></tr>
+                            <tr><td>耐温等级</td><td>105°C</td></tr>
+                            <tr><td>击穿电压</td><td>≥2500V</td></tr>
+                            <tr><td>体积电阻率</td><td>≥10¹⁰ Ω·cm</td></tr>
+                            <tr><td>抗张强度</td><td>≥10.4 MPa</td></tr>
+                            <tr><td>断裂伸长率</td><td>≥100%</td></tr>
+                            <tr><td>认证标准</td><td>UL / RoHS</td></tr>
+                        </table>
                     </div>
-
-                    <div class="product-cta">
-                        <a href="https://wa.me/8613590605550?text=您好，我想了解PVC套管产品" class="btn btn-whatsapp" target="_blank">
-                            <i class="fab fa-whatsapp"></i> WhatsApp咨询
+                    
+                    <div class="product-contact" style="margin-top: 25px;">
+                        <a href="https://wa.me/8613590605550" class="btn btn-primary" target="_blank">
+                            <i class="fab fa-whatsapp"></i> 立即询价
                         </a>
-                        <a href="mailto:heman508@gmail.com?subject=PVC套管询价" class="btn btn-primary">
-                            <i class="fas fa-envelope"></i> 邮件询价
+                        <a href="mailto:heman508@gmail.com" class="btn btn-outline">
+                            <i class="fas fa-envelope"></i> 发送邮件
                         </a>
                     </div>
                 </div>
@@ -351,21 +251,20 @@
         </div>
     </section>
 
-    <!-- 特性参数 -->
+    <!-- 产品特点 -->
     <section class="section light-bg">
         <div class="container">
-            <h2 class="section-title" style="color: #333;">技术参数 <span style="color: #666;">Specifications</span></h2>
-            
+            <h2 class="section-title" style="color: #333;">产品特点 <span style="color: #666;">Features</span></h2>
             <div class="feature-grid">
                 <div class="feature-item">
                     <div class="icon">🌡️</div>
                     <h4>温度等级</h4>
-                    <p>105°C</p>
+                    <p>105°C耐温等级</p>
                 </div>
                 <div class="feature-item">
                     <div class="icon">⚡</div>
                     <h4>电压等级</h4>
-                    <p>300V / 600V</p>
+                    <p>300V / 600V可选</p>
                 </div>
                 <div class="feature-item">
                     <div class="icon">🛡️</div>
@@ -383,276 +282,95 @@
                     <p>≥10.4 MPa</p>
                 </div>
                 <div class="feature-item">
-                    <div class="icon">🔄</div>
-                    <h4>断裂伸长率</h4>
-                    <p>≥100%</p>
+                    <div class="icon">🌿</div>
+                    <h4>环保认证</h4>
+                    <p>RoHS环保标准</p>
                 </div>
-            </div>
-
-            <h3 style="margin-top: 40px;">详细性能参数</h3>
-            <div class="table-container">
-            <table class="spec-table">
-                <thead>
-                    <tr>
-                        <th>项目</th>
-                        <th>单位</th>
-                        <th>技术指标</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td>温度等级</td>
-                        <td>°C</td>
-                        <td>105</td>
-                    </tr>
-                    <tr>
-                        <td>电压等级</td>
-                        <td>V</td>
-                        <td>300 / 600</td>
-                    </tr>
-                    <tr>
-                        <td>抗张强度</td>
-                        <td>MPa</td>
-                        <td>≥10.4</td>
-                    </tr>
-                    <tr>
-                        <td>断裂伸长率</td>
-                        <td>%</td>
-                        <td>≥100</td>
-                    </tr>
-                    <tr>
-                        <td>体积电阻率</td>
-                        <td>Ω·cm</td>
-                        <td>≥10¹⁰</td>
-                    </tr>
-                    <tr>
-                        <td>击穿电压</td>
-                        <td>V</td>
-                        <td>≥2500 (60秒不击穿)</td>
-                    </tr>
-                    <tr>
-                        <td>裸铜腐蚀性</td>
-                        <td>-</td>
-                        <td>无腐蚀</td>
-                    </tr>
-                    <tr>
-                        <td>热冲击</td>
-                        <td>-</td>
-                        <td>无裂纹</td>
-                    </tr>
-                    <tr>
-                        <td>轴向收缩率</td>
-                        <td>%</td>
-                        <td>≤±5</td>
-                    </tr>
-                    <tr>
-                        <td>空气烘箱老化 (136°C, 7天)</td>
-                        <td>-</td>
-                        <td>抗张强度≥7.3MPa，伸长率≥100%</td>
-                    </tr>
-                </tbody>
-            </table>
             </div>
         </div>
     </section>
 
-    <!-- 尺寸规格 -->
-    <section class="section light-bg" style="background: #f8f9fa;">
+    <!-- 产品细节图 -->
+    <section class="section">
         <div class="container">
-            <h2 class="section-title" style="color: #333;">尺寸规格 <span style="color: #666;">Standard Sizes</span></h2>
+            <h2 class="section-title">产品细节 <span>Details</span></h2>
             
-            <div class="size-note">
-                <strong>可接受特殊规格产品订单</strong> — 其他尺寸可根据客户需求定制，欢迎咨询！
-            </div>
-
-            <h3>600V PVC套管规格表</h3>
-            <div class="table-container">
-            <table class="spec-table">
-                <thead>
-                    <tr>
-                        <th>规格 (mm)</th>
-                        <th>内径偏差 (mm)</th>
-                        <th>壁厚 (mm)</th>
-                        <th>壁厚偏差 (mm)</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr><td>1.0</td><td>1.0±0.15</td><td>0.25</td><td>±0.05</td></tr>
-                    <tr><td>1.5</td><td>1.5±0.15</td><td>0.25</td><td>±0.05</td></tr>
-                    <tr><td>2.0</td><td>2.0±0.15</td><td>0.25</td><td>±0.05</td></tr>
-                    <tr><td>2.5</td><td>2.5±0.15</td><td>0.30</td><td>±0.05</td></tr>
-                    <tr><td>3.0</td><td>3.0±0.15</td><td>0.35</td><td>±0.05</td></tr>
-                    <tr><td>3.5</td><td>3.5±0.15</td><td>0.35</td><td>±0.05</td></tr>
-                    <tr><td>4.0</td><td>4.0±0.15</td><td>0.40</td><td>±0.05</td></tr>
-                    <tr><td>4.5</td><td>4.5±0.15</td><td>0.40</td><td>±0.05</td></tr>
-                    <tr><td>5.0</td><td>5.0±0.15</td><td>0.40</td><td>±0.05</td></tr>
-                    <tr><td>5.5</td><td>5.5±0.15</td><td>0.40</td><td>±0.05</td></tr>
-                    <tr><td>6.0</td><td>6.0±0.20</td><td>0.45</td><td>±0.05</td></tr>
-                    <tr><td>6.5</td><td>6.5±0.20</td><td>0.45</td><td>±0.05</td></tr>
-                    <tr><td>7.0</td><td>7.0±0.20</td><td>0.45</td><td>±0.05</td></tr>
-                    <tr><td>7.5</td><td>7.5±0.20</td><td>0.45</td><td>±0.05</td></tr>
-                    <tr><td>8.0</td><td>8.0±0.20</td><td>0.45</td><td>±0.05</td></tr>
-                    <tr><td>8.5</td><td>8.5±0.20</td><td>0.45</td><td>±0.05</td></tr>
-                    <tr><td>9.0</td><td>9.0±0.20</td><td>0.45</td><td>±0.08</td></tr>
-                    <tr><td>9.5</td><td>9.5±0.20</td><td>0.45</td><td>±0.08</td></tr>
-                    <tr><td>10.0</td><td>10.0±0.20</td><td>0.50</td><td>±0.08</td></tr>
-                    <tr><td>11.0</td><td>11.0±0.20</td><td>0.50</td><td>±0.08</td></tr>
-                    <tr><td>12.0</td><td>12.0±0.25</td><td>0.50</td><td>±0.10</td></tr>
-                    <tr><td>13.0</td><td>13.0±0.25</td><td>0.55</td><td>±0.10</td></tr>
-                    <tr><td>14.0</td><td>14.0±0.25</td><td>0.55</td><td>±0.10</td></tr>
-                    <tr><td>15.0</td><td>15.0±0.25</td><td>0.55</td><td>±0.10</td></tr>
-                    <tr><td>16.0</td><td>16.0±0.25</td><td>0.60</td><td>±0.10</td></tr>
-                </tbody>
-            </table>
-            </div>
-
-            <div class="size-note" style="margin-top: 20px;">
-                <strong>标准颜色：</strong>黑色、白色<br>
-                <strong>特殊颜色：</strong>可接受其他颜色订货
+            <div class="image-showcase">
+                <img src="../images/pvc-hose-main.jpg" alt="PVC套管产品展示">
+                <p>多规格PVC套管产品展示 · 内径1.0-16.5mm可选</p>
             </div>
         </div>
     </section>
 
     <!-- 应用领域 -->
-    <section class="section" style="background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);">
+    <section class="section light-bg">
         <div class="container">
-            <h2 class="section-title" style="color: #fff;">应用领域 <span style="color: #ccc;">Applications</span></h2>
+            <h2 class="section-title" style="color: #333;">应用领域 <span style="color: #666;">Applications</span></h2>
+            
+            <p style="text-align: center; color: #555; margin-bottom: 25px;">PVC套管广泛应用在以下领域：</p>
             
             <div class="application-grid">
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-cog"></i>
-                    <span>电机绕组绝缘</span>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电机绕组</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-car-battery"></i>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
                     <span>变压器绝缘</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-tv"></i>
-                    <span>家用电器线束</span>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>家用电器</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-lightbulb"></i>
-                    <span>灯具绝缘保护</span>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>灯具保护</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-plug"></i>
-                    <span>电源线保护</span>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>电源线</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-car"></i>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
                     <span>汽车线束</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-bolt"></i>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
                     <span>电子元器件</span>
                 </div>
-                <div class="application-item" style="background: rgba(255,255,255,0.1); color: #fff;">
-                    <i class="fas fa-industry"></i>
-                    <span>工业设备绝缘</span>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>工业设备</span>
                 </div>
-            </div>
-
-            <div class="product-description" style="margin-top: 30px; color: #ccc;">
-                <p style="color: #ccc;"><strong style="color: #fff;">典型应用场景：</strong></p>
-                <ul style="margin-top: 15px; line-height: 2; color: #ccc;">
-                    <li>• 电机绕组端部绝缘保护，防止短路</li>
-                    <li>• 变压器线圈层间绝缘</li>
-                    <li>• 家用电器内部线束集束保护</li>
-                    <li>• 开关电源、适配器等电子产品绝缘</li>
-                    <li>• 汽车线束耐磨保护</li>
-                </ul>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>开关电源</span>
+                </div>
+                <div class="application-item">
+                    <i class="fas fa-check-circle"></i>
+                    <span>线束集束</span>
+                </div>
             </div>
         </div>
     </section>
 
-    <!-- 环保认证 -->
-    <section class="section light-bg" style="background: #f8f9fa;">
-        <div class="container">
-            <h2 class="section-title" style="color: #333;">环保认证 <span style="color: #666;">Certifications</span></h2>
-            
-            <div class="feature-grid">
-                <div class="feature-item">
-                    <div class="icon">🌿</div>
-                    <h4>RoHS认证</h4>
-                    <p>无铅、无镉、无汞<br>无六价铬、无PBB/PBDE</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">✅</div>
-                    <h4>UL认证</h4>
-                    <p>符合UL安全标准<br>国际品质认证</p>
-                </div>
-                <div class="feature-item">
-                    <div class="icon">🔬</div>
-                    <h4>材质证明</h4>
-                    <p>PVC树脂基材<br>环保助剂配方</p>
-                </div>
-            </div>
-
-            <div class="size-note">
-                <strong>材质声明：</strong>我司PVC套管基材树脂为聚氯乙烯（PVC），附加适量环保助剂。产品中铅、镉、汞、六价铬、PBB、PBDE含量符合RoHS环保要求。
-            </div>
-        </div>
-    </section>
-
-    <!-- 相关产品 -->
+    <!-- 联系我们 -->
     <section class="section">
         <div class="container">
-            <h2 class="section-title">相关产品 <span>Related Products</span></h2>
+            <h2 class="section-title">联系我们 <span>Contact</span></h2>
+            <p style="text-align: center; color: #888; margin-bottom: 30px;">需要定制或询价？我们提供免费样品测试，欢迎联系我们获取详细报价</p>
             
-            <div class="products-grid" style="grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));">
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="../images/fiberglass-sleeve.jpg" alt="硅树脂玻璃纤维套管">
-                    </div>
-                    <div class="product-info">
-                        <h3>硅树脂玻璃纤维套管</h3>
-                        <p>耐温250°C，耐压10KV</p>
-                        <a href="fiberglass-sleeve.html" class="btn btn-secondary btn-small">查看详情</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="../images/silicone-tube-main.jpg" alt="硅胶管">
-                    </div>
-                    <div class="product-info">
-                        <h3>硅胶管</h3>
-                        <p>食品级，耐温200°C</p>
-                        <a href="silicone-tube.html" class="btn btn-secondary btn-small">查看详情</a>
-                    </div>
-                </div>
-                <div class="product-card">
-                    <div class="product-image">
-                        <img src="../images/wax-tube-main.jpg" alt="黄腊管">
-                    </div>
-                    <div class="product-info">
-                        <h3>黄腊管</h3>
-                        <p>柔软耐弯折，经济实用</p>
-                        <a href="wax-tube.html" class="btn btn-secondary btn-small">查看详情</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- 联系方式 -->
-    <section class="section contact-section" style="background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); color: #fff;">
-        <div class="container" style="text-align: center;">
-            <h2 class="section-title" style="color: #fff;">需要更多信息？</h2>
-            <p style="margin-bottom: 30px; color: #ccc;">我们提供免费样品和技术支持，欢迎联系咨询！</p>
-            
-            <div style="display: flex; justify-content: center; gap: 20px; flex-wrap: wrap;">
-                <a href="https://wa.me/8613590605550" class="btn btn-whatsapp" target="_blank" style="padding: 15px 30px;">
-                    <i class="fab fa-whatsapp"></i> WhatsApp: +86 135 9060 5550
+            <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <a href="https://wa.me/8613590605550" class="btn btn-primary" target="_blank">
+                    <i class="fab fa-whatsapp"></i> WhatsApp咨询
                 </a>
-                <a href="mailto:heman508@gmail.com" class="btn btn-primary" style="padding: 15px 30px;">
+                <a href="tel:+8613590605550" class="btn btn-secondary">
+                    <i class="fas fa-phone"></i> +86 135 9060 5550
+                </a>
+                <a href="mailto:heman508@gmail.com" class="btn btn-outline">
                     <i class="fas fa-envelope"></i> heman508@gmail.com
                 </a>
             </div>
-            
-            <p style="margin-top: 30px; color: #888;">
-                <i class="fas fa-map-marker-alt"></i> 地址：广东省佛山市顺德区陈村镇永兴工业区二路一号
-            </p>
         </div>
     </section>
 
@@ -660,37 +378,37 @@
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
-                <div class="footer-section">
-                    <h4>YC INSULATION</h4>
-                    <p>专业绝缘套管制造商<br>18年行业经验</p>
+                <div class="footer-brand">
+                    <h2>YC INSULATION</h2>
+                    <p>佛山盈灿绝缘材料有限公司</p>
                 </div>
-                <div class="footer-section">
-                    <h4>产品系列</h4>
+                <div class="footer-links">
+                    <h4>快速链接</h4>
                     <ul>
-                        <li><a href="fiberglass-sleeve.html">玻璃纤维套管</a></li>
-                        <li><a href="silicone-tube.html">硅胶管</a></li>
-                        <li><a href="pvc-hose.html">PVC套管</a></li>
-                        <li><a href="wax-tube.html">黄腊管</a></li>
+                        <li><a href="../index.html">首页</a></li>
+                        <li><a href="../index.html#about">关于我们</a></li>
+                        <li><a href="../index.html#products">产品中心</a></li>
+                        <li><a href="../index.html#contact">联系我们</a></li>
                     </ul>
                 </div>
-                <div class="footer-section">
-                    <h4>联系我们</h4>
+                <div class="footer-contact">
+                    <h4>联系方式</h4>
                     <p><i class="fas fa-phone"></i> +86 135 9060 5550</p>
                     <p><i class="fas fa-envelope"></i> heman508@gmail.com</p>
+                    <p><i class="fab fa-whatsapp"></i> +86 135 9060 5550</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2026 YC INSULATION. All rights reserved.</p>
+                <p>&copy; 2024-2026 YC INSULATION. All Rights Reserved.</p>
             </div>
         </div>
     </footer>
 
-    <script>
-        function changeImage(thumb) {
-            document.getElementById('mainImage').src = thumb.src;
-            document.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
-            thumb.classList.add('active');
-        }
-    </script>
+    <!-- WhatsApp Float Button -->
+    <a href="https://wa.me/8613590605550" class="whatsapp-float" target="_blank">
+        <i class="fab fa-whatsapp"></i>
+    </a>
+
+    <script src="../js/main.js"></script>
 </body>
 </html>
