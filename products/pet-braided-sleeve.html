@@ -111,6 +111,39 @@
             color: #ff6b2c;
             margin-right: 10px;
         }
+        /* 产品规格表样式 */
+        .product-content .product-specs table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+        }
+        .product-content .product-specs table td {
+            padding: 10px 15px;
+            border-bottom: 1px solid #eee;
+            font-size: 14px;
+        }
+        .product-content .product-specs table td:first-child {
+            font-weight: 600;
+            color: #666;
+            width: 40%;
+        }
+        .product-content .product-specs table td:last-child {
+            color: #333;
+        }
+        .product-tags {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .tag {
+            background: linear-gradient(135deg, #ff6b2c 0%, #ff8c5a 100%);
+            color: white;
+            padding: 6px 15px;
+            border-radius: 20px;
+            font-size: 13px;
+            font-weight: 500;
+        }
     </style>
 </head>
 <body>
@@ -149,37 +182,47 @@
     <!-- Product Detail -->
     <section class="product-detail section">
         <div class="container">
-            <div class="product-detail-grid">
-                <!-- 产品图片 -->
-                <div class="product-images">
+            <div class="product-main">
+                <div class="product-gallery">
                     <div class="main-image">
                         <img src="../images/pet-braided-sleeve-spool.jpg" alt="PET伸缩编织网管卷装">
                     </div>
-                    <div class="image-thumbnails" style="display: flex; gap: 10px; margin-top: 15px; flex-wrap: wrap;">
-                        <img src="../images/pet-braided-sleeve.jpg" alt="PET编织网管细节" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid #eee;">
-                        <img src="../images/pet-braided-sleeve-cut.jpg" alt="PET编织网管切段展示" style="width: 100px; height: 100px; object-fit: cover; border-radius: 8px; cursor: pointer; border: 2px solid #eee;">
+                    <div class="product-thumbnails">
+                        <img src="../images/pet-braided-sleeve.jpg" alt="PET编织网管细节" class="thumbnail">
+                        <img src="../images/pet-braided-sleeve-cut.jpg" alt="PET编织网管切段展示" class="thumbnail">
                     </div>
                     <p style="text-align: center; color: #888; font-size: 13px; margin-top: 10px;">线轴式包装 · 编织纹理 · 切口整齐不散边</p>
                 </div>
                 
-                <!-- 产品信息 -->
-                <div class="product-info">
+                <div class="product-content">
                     <h1>PET伸缩编织网管</h1>
                     <h2>PET Braided Expandable Sleeve</h2>
-                    <p class="product-tagline">阻燃无卤 · 高性能线束保护</p>
                     
-                    <div class="product-highlights">
-                        <h3>核心特点</h3>
-                        <ul>
-                            <li><i class="fas fa-check"></i> 阻燃UL94V2/VW-1，安全可靠</li>
-                            <li><i class="fas fa-check"></i> 无卤环保，符合RoHS标准</li>
-                            <li><i class="fas fa-check"></i> 可扩充至原直径1.5倍</li>
-                            <li><i class="fas fa-check"></i> 良好的散热性和耐磨性</li>
-                            <li><i class="fas fa-check"></i> 柔软易操作，通过大连接器</li>
-                        </ul>
+                    <div class="product-tags">
+                        <span class="tag">阻燃无卤</span>
+                        <span class="tag">高伸缩性</span>
+                        <span class="tag">散热优良</span>
                     </div>
                     
-                    <div class="product-contact">
+                    <div class="product-description">
+                        <p>PET伸缩编织网管是一款集阻燃性和无卤于一身的高性能网管。独特的编织结构可扩充到比圆直径大1.5倍的尺寸，具有良好的散热性、防火性、耐磨性、柔软性，更适合包裹线束，能顺利通过体积庞大的连接器。</p>
+                    </div>
+                    
+                    <div class="product-specs">
+                        <h3>产品规格</h3>
+                        <table>
+                            <tr><td>材质</td><td>聚酯（PET）</td></tr>
+                            <tr><td>工作温度</td><td>-50°C ~ +150°C</td></tr>
+                            <tr><td>熔点</td><td>240±10°C</td></tr>
+                            <tr><td>阻燃等级</td><td>UL94V2、VW-1</td></tr>
+                            <tr><td>认证标准</td><td>RoHS、无卤认证</td></tr>
+                            <tr><td>伸缩比</td><td>可扩充至原直径1.5倍</td></tr>
+                            <tr><td>标准颜色</td><td>黑色（可定制）</td></tr>
+                            <tr><td>裁切工具</td><td>热切刀（防散边）</td></tr>
+                        </table>
+                    </div>
+                    
+                    <div class="product-contact" style="margin-top: 25px;">
                         <a href="https://wa.me/8618022240398" class="btn btn-primary" target="_blank">
                             <i class="fab fa-whatsapp"></i> 立即询价
                         </a>
@@ -188,59 +231,6 @@
                         </a>
                     </div>
                 </div>
-            </div>
-            
-            <!-- 产品简介 -->
-            <div class="product-description section">
-                <h2>产品简介</h2>
-                <p>PET伸缩编织网管是一款集阻燃性和无卤于一身的高性能网管。它能符合各种工业领域对耐磨保护的要求。尤其是其独特的编织结构可扩充到比圆直径大1.5倍的尺寸，具有良好的散热性、防火性、耐磨性、柔软性、防尘性、操作简单快捷等特点，更适合包裹线束，能顺利通过体积庞大的连接器。</p>
-            </div>
-            
-            <!-- 技术参数 -->
-            <div class="product-specs section">
-                <h2>技术参数</h2>
-                <table class="spec-table">
-                    <thead>
-                        <tr>
-                            <th>参数项目</th>
-                            <th>参数值</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>材质</td>
-                            <td>聚酯（PET）</td>
-                        </tr>
-                        <tr>
-                            <td>工作温度</td>
-                            <td>-50°C ~ +150°C</td>
-                        </tr>
-                        <tr>
-                            <td>熔点</td>
-                            <td>240±10°C</td>
-                        </tr>
-                        <tr>
-                            <td>阻燃等级</td>
-                            <td>UL94V2、VW-1</td>
-                        </tr>
-                        <tr>
-                            <td>认证标准</td>
-                            <td>RoHS、无卤认证</td>
-                        </tr>
-                        <tr>
-                            <td>标准颜色</td>
-                            <td>黑色（可定制其他颜色）</td>
-                        </tr>
-                        <tr>
-                            <td>裁切工具</td>
-                            <td>热切刀（防止散边）</td>
-                        </tr>
-                        <tr>
-                            <td>伸缩比</td>
-                            <td>可扩充至原直径1.5倍</td>
-                        </tr>
-                    </tbody>
-                </table>
             </div>
             
             <!-- 产品特点 -->
