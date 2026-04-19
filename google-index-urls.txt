@@ -1,0 +1,54 @@
+# YC INSULATION - Google 索引提交 URL 列表
+# 使用方法：在 Google Search Console → 网址检查 → 逐个粘贴提交
+
+## ============ 第一优先：首页（8语言）============
+https://ycsleeve.com/
+https://ycsleeve.com/index-en.html
+https://ycsleeve.com/index-ko.html
+https://ycsleeve.com/index-vi.html
+https://ycsleeve.com/index-th.html
+https://ycsleeve.com/index-id.html
+https://ycsleeve.com/index-tr.html
+https://ycsleeve.com/index-ar.html
+
+## ============ 第二优先：产品系列页 ============
+https://ycsleeve.com/products/fiberglass-series.html
+https://ycsleeve.com/products/heat-shrink-series.html
+https://ycsleeve.com/products/pvc-series.html
+https://ycsleeve.com/products/silicone-series.html
+https://ycsleeve.com/products/wax-series.html
+
+## ============ 第三优先：核心产品页（中文）============
+https://ycsleeve.com/products/fiberglass-sleeve.html
+https://ycsleeve.com/products/fiberglass-inner-fiber.html
+https://ycsleeve.com/products/fiberglass-inner-rubber.html
+https://ycsleeve.com/products/fiberglass-silicone-resin.html
+https://ycsleeve.com/products/fiberglass-wax.html
+https://ycsleeve.com/products/pet-braided-sleeve.html
+https://ycsleeve.com/products/heat-shrink.html
+https://ycsleeve.com/products/pvc-hose.html
+https://ycsleeve.com/products/silicone-tube.html
+https://ycsleeve.com/products/wax-tube.html
+
+## ============ 第四优先：核心产品页（英文）============
+https://ycsleeve.com/products/fiberglass-sleeve-en.html
+https://ycsleeve.com/products/fiberglass-inner-fiber-en.html
+https://ycsleeve.com/products/fiberglass-inner-rubber-en.html
+https://ycsleeve.com/products/fiberglass-wax-en.html
+https://ycsleeve.com/products/pet-braided-sleeve-en.html
+https://ycsleeve.com/products/heat-shrink-en.html
+https://ycsleeve.com/products/pvc-hose-en.html
+https://ycsleeve.com/products/silicone-tube-en.html
+https://ycsleeve.com/products/wax-tube-en.html
+
+## ============ 其他产品页 ============
+https://ycsleeve.com/products/fiberglass-ecigarette.html
+https://ycsleeve.com/products/heat-shrink-double-wall.html
+https://ycsleeve.com/products/heat-shrink-general.html
+https://ycsleeve.com/products/heat-shrink-high-temp.html
+https://ycsleeve.com/products/heat-shrink-special.html
+https://ycsleeve.com/products/heat-shrink-thick-wall.html
+https://ycsleeve.com/products/heat-shrink-ultra-temp.html
+https://ycsleeve.com/products/corrugated-tube.html
+https://ycsleeve.com/products/dingwen-tube.html
+https://ycsleeve.com/products/high-temp-seal-tube.html
