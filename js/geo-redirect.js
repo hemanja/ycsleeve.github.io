@@ -15,7 +15,7 @@
  */
 
 (function() {
-    'const GEO_REDIRECT_VERSION = '1.0.0';
+    const GEO_REDIRECT_VERSION = '1.0.0';
     const STORAGE_KEY = 'yc_geo_redirected';
     const GEO_DATA_KEY = 'yc_geo_data';
     const CACHE_DURATION = 24 * 60 * 60 * 1000; // 24小时缓存
