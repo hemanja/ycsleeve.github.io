@@ -1,82 +1,116 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
-    
-    <!-- 首页 - 多语言版本 -->
-    <url>
-        <loc>https://ycsleeve.com/</loc>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://ycsleeve.com/"/>
-        <xhtml:link rel="alternate" hreflang="en" href="https://ycsleeve.com/index-en.html"/>
-        <xhtml:link rel="alternate" hreflang="ko" href="https://ycsleeve.com/index-ko.html"/>
-        <xhtml:link rel="alternate" hreflang="vi" href="https://ycsleeve.com/index-vi.html"/>
-        <xhtml:link rel="alternate" hreflang="th" href="https://ycsleeve.com/index-th.html"/>
-        <xhtml:link rel="alternate" hreflang="id" href="https://ycsleeve.com/index-id.html"/>
-        <xhtml:link rel="alternate" hreflang="tr" href="https://ycsleeve.com/index-tr.html"/>
-        <xhtml:link rel="alternate" hreflang="ar" href="https://ycsleeve.com/index-ar.html"/>
-        <xhtml:link rel="alternate" hreflang="x-default" href="https://ycsleeve.com/"/>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>1.0</priority>
-    </url>
-    
-    <!-- 英文首页 -->
-    <url>
-        <loc>https://ycsleeve.com/index-en.html</loc>
-        <xhtml:link rel="alternate" hreflang="en" href="https://ycsleeve.com/index-en.html"/>
-        <xhtml:link rel="alternate" hreflang="zh" href="https://ycsleeve.com/"/>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>weekly</changefreq>
-        <priority>0.9</priority>
-    </url>
-    
-    <!-- 产品页面 -->
-    <url>
-        <loc>https://ycsleeve.com/products/fiberglass-series.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://ycsleeve.com/products/fiberglass-inner-fiber.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://ycsleeve.com/products/fiberglass-sleeve.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.8</priority>
-    </url>
-    
-    <url>
-        <loc>https://ycsleeve.com/products/pvc-sleeve.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://ycsleeve.com/products/heat-shrink.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://ycsleeve.com/products/silicone-sleeve.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
-    <url>
-        <loc>https://ycsleeve.com/products/yellow-wax-cloth.html</loc>
-        <lastmod>2026-03-25</lastmod>
-        <changefreq>monthly</changefreq>
-        <priority>0.7</priority>
-    </url>
-    
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <!-- 首页 - 中文 -->
+  <url>
+    <loc>https://ycsleeve.com/</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  
+  <!-- 首页 - 多语言 -->
+  <url>
+    <loc>https://ycsleeve.com/index-en.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/index-ar.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/index-vi.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/index-th.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/index-ko.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/index-id.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/index-tr.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- 产品页面 -->
+  <url>
+    <loc>https://ycsleeve.com/products/fiberglass-sleeve.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/silicone-tube.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/heat-shrink-series.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/fiberglass-series.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/pet-braided-sleeve.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/corrugated-tube.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/pvc-hose.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/fiberglass-inner-rubber.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/fiberglass-inner-fiber.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://ycsleeve.com/products/wax-tube.html</loc>
+    <lastmod>2025-04-28</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
