@@ -291,12 +291,21 @@ body {
     text-transform: uppercase;
 }
 
-.logo h1 span {
-    background: linear-gradient(135deg, var(--racing-yellow) 0%, var(--racing-orange) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
+.logo-yc {
+    color: #e25831;
     font-weight: 900;
+}
+
+.logo-ins {
+    color: #f6c954;
+    font-weight: 900;
+}
+
+.logo h1 span {
+    background: none;
+    -webkit-background-clip: unset;
+    -webkit-text-fill-color: unset;
+    background-clip: unset;
 }
 
 .logo p {
